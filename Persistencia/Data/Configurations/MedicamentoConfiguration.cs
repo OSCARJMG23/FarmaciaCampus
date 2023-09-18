@@ -33,5 +33,9 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
         builder.Property(c => c.ProveedorId)
         .IsRequired()
         .HasColumnType("int");
+
+        builder.HasOne(p => p.Proveedor)
+        .WithMany(p => p.Medicamentos)
+        .HasForeignKey(p => p.IdProveedorFk);
     }
 }
