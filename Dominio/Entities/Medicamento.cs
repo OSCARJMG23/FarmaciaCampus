@@ -13,7 +13,8 @@ namespace Dominio.Entities
         public DateTime FechaExpiracion { get; set; }
         public int IdProveedorFk { get; set; }
         public Proveedor Proveedor { get; set; }
-        public ICollection<MedicamentosComprados> MedicamentosComprados { get; set; }
-        public ICollection<MedicamentosVendidos> MedicamentosVendidos { get; set; }
+
+        public ICollection<MedicamentoComprado> MedicamentosComprados { get; set; }
+        public ICollection<MedicamentoVendido> MedicamentosVendidos { get; set; }
     }
 }

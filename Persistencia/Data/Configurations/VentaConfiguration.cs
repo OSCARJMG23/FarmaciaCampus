@@ -14,11 +14,11 @@ public class VentaConfiguration : IEntityTypeConfiguration<Venta>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(c => c.PacienteId)
+        builder.Property(c => c.IdPacienteFk)
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(c => c.EmpleadoId)
+        builder.Property(c => c.IdEmpleadoFk)
         .IsRequired()
         .HasColumnType("int");
 

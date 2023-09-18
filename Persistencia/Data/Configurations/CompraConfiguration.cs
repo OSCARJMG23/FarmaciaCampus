@@ -14,7 +14,7 @@ public class CompraConfiguration : IEntityTypeConfiguration<Compra>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(c => c.ProveedorId)
+        builder.Property(c => c.IdProveedorFk)
         .IsRequired()
         .HasColumnType("int");
 

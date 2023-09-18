@@ -15,11 +15,11 @@ public class MedicamentoCompradoConfiguration : IEntityTypeConfiguration<Medicam
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(m => m.CompraId)
+        builder.Property(m => m.IdCompraFk)
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(m => m.MedicamentoId)
+        builder.Property(m => m.IdMedicamentoFk)
         .IsRequired()
         .HasColumnType("int");
 
@@ -32,11 +32,11 @@ public class MedicamentoCompradoConfiguration : IEntityTypeConfiguration<Medicam
         .HasColumnType("double");
 
         builder.HasOne(m => m.Compra)
-        .WithMany(m => m.MedicamentoComprado)
+        .WithMany(m => m.MedicamentosComprados)
         .HasForeignKey(m => m.IdCompraFk);
 
         builder.HasOne(m => m.Medicamento)
-        .WithMany(m => m.MedicamentoComprado)
+        .WithMany(m => m.MedicamentosComprados)
         .HasForeignKey(m => m.IdMedicamentoFk);
     }    
 }
