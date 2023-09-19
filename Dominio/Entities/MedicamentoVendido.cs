@@ -13,6 +13,5 @@ namespace Dominio.Entities
         public Medicamento Medicamento { get; set; }
         public int CantidadVendida { get; set; }
         public int Precio { get; set; }
-        public ICollection<Medicamento> Medicamentos { get; set; }
     }
 }
