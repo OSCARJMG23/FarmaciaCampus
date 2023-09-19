@@ -22,11 +22,6 @@ public class VentaConfiguration : IEntityTypeConfiguration<Venta>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(c => c.FechaVenta)
-        .IsRequired()
-        .HasColumnType("datatime");
-
-
         builder.HasOne(e => e.Empleado)
         .WithMany(e => e.Ventas)
         .HasForeignKey(e => e.IdEmpleadoFk);

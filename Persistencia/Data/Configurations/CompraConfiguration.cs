@@ -18,10 +18,6 @@ public class CompraConfiguration : IEntityTypeConfiguration<Compra>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(c => c.FechaCompra)
-        .IsRequired()
-        .HasColumnType("datatime");
-
         builder.HasOne(p => p.Proveedor)
         .WithMany(p => p.Compras)
         .HasForeignKey(p => p.IdProveedorFk);

@@ -21,8 +21,5 @@ public class EmpleadoConfiguration : IEntityTypeConfiguration<Empleado>
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(e => e.FechaContratacion)
-        .IsRequired()
-        .HasColumnType("datatime");
     }
 }
