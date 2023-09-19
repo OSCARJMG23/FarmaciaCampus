@@ -1,3 +1,7 @@
+using ApiFarmacia.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Persistencia.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureCors();
+
+builder.Services.AddDbContext<ApiFarmaciaContext>(options =>
+{
+    string connectionString = builder.Configuration.GetConnectionString("Default");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 var app = builder.Build();
 
