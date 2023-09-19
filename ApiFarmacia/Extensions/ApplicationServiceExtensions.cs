@@ -1,3 +1,6 @@
+using Aplicacion.UnitOfWork;
+using Dominio.Interfaces;
+
 namespace ApiFarmacia.Extensions;
 
 public static class ApplicationServiceExtensions
@@ -10,4 +13,8 @@ public static class ApplicationServiceExtensions
             .AllowAnyMethod()      
             .AllowAnyHeader());     
     });
+    public static void AddAplicacionServices(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
 }
