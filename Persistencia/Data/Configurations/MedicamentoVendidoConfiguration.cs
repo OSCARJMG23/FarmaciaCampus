@@ -31,12 +31,6 @@ public class MedicamentoVendidoConfiguration : IEntityTypeConfiguration<Medicame
         .IsRequired()
         .HasColumnType("double");
 
-        builder.HasOne(m => m.Venta)
-        .WithMany(m => m.MedicamentoVendidos)
-        .HasForeignKey(m => m.IdVentaFk);
 
-        builder.HasOne(m => m.Medicamento)
-        .WithMany(m => m.MedicamentosVendidos)
-        .HasForeignKey(m => m.IdMedicamentoFk);
     }    
 }
