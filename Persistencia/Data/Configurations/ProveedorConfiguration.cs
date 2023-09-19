@@ -20,7 +20,7 @@ public class ProveedorConfiguration : IEntityTypeConfiguration<Proveedor>
 
         builder.Property(p => p.Contacto)
         .IsRequired()
-        .HasColumnType("int");
+        .HasMaxLength(50);
 
         builder.Property(p => p.Direccion)
         .IsRequired()

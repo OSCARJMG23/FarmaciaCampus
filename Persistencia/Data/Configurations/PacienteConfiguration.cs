@@ -23,6 +23,6 @@ public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
 
         builder.Property(p => p.Telefono)
         .IsRequired()
-        .HasColumnType("int");
+        .HasMaxLength(50);
     }
 }
