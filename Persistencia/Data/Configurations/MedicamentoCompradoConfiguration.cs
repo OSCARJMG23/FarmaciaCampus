@@ -31,12 +31,6 @@ public class MedicamentoCompradoConfiguration : IEntityTypeConfiguration<Medicam
         .IsRequired()
         .HasColumnType("double");
 
-        builder.HasOne(m => m.Compra)
-        .WithMany(m => m.MedicamentosComprados)
-        .HasForeignKey(m => m.IdCompraFk);
 
-        builder.HasOne(m => m.Medicamento)
-        .WithMany(m => m.MedicamentosComprados)
-        .HasForeignKey(m => m.IdMedicamentoFk);
     }    
 }
