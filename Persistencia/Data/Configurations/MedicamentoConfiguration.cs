@@ -27,8 +27,7 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
         .HasColumnType("int");
 
         builder.Property(c => c.FechaExpiracion)
-        .IsRequired()
-        .HasColumnType("datatime");
+        .IsRequired();
 
         builder.Property(c => c.IdProveedorFk)
         .IsRequired()

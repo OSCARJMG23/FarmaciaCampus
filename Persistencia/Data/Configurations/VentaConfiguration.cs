@@ -23,8 +23,7 @@ public class VentaConfiguration : IEntityTypeConfiguration<Venta>
         .HasColumnType("int");
 
         builder.Property(c => c.FechaVenta)
-        .IsRequired()
-        .HasColumnType("datatime");
+        .IsRequired();
 
 
         builder.HasOne(e => e.Empleado)

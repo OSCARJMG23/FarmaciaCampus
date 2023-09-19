@@ -14,7 +14,7 @@ builder.Services.ConfigureCors();
 
 builder.Services.AddDbContext<ApiFarmaciaContext>(options =>
 {
-    string connectionString = builder.Configuration.GetConnectionString("Default");
+    string connectionString = builder.Configuration.GetConnectionString("ConexMysql");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
@@ -26,6 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
