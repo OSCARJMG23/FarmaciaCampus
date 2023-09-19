@@ -2,15 +2,15 @@ using System.Linq.Expressions;
 using Dominio.Entities;
 using Dominio.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Persistencia;
+using Persistencia.Data;
 
 namespace Aplicacion.Repository;
 
-public class GenericRepository<T> : IGenericRepo<T> where T : BaseEntity
+public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     private readonly ApiFarmaciaContext _context;
 
-    public GenericRepositoryA(ApiFarmaciaContext context)
+    public GenericRepository(ApiFarmaciaContext context)
     {
         _context = context;
     }
