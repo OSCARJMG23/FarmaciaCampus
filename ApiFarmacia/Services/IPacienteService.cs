@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace ApiFarmacia.Services;
 
-namespace ApiFarmacia.Services
+public interface IPacienteService
 {
-    public interface IPacienteService
-    {
-        
-    }
+    
 }

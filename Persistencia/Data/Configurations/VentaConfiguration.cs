@@ -22,6 +22,10 @@ public class VentaConfiguration : IEntityTypeConfiguration<Venta>
         .IsRequired()
         .HasColumnType("int");
 
+        builder.Property(c => c.FechaVenta)
+        .IsRequired();
+
+
         builder.HasOne(e => e.Empleado)
         .WithMany(e => e.Ventas)
         .HasForeignKey(e => e.IdEmpleadoFk);

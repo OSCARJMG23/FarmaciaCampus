@@ -25,7 +25,7 @@ public class MedicamentoVendidoConfiguration : IEntityTypeConfiguration<Medicame
 
         builder.Property(m => m.CantidadVendida)
         .IsRequired()
-        .HasColumnType("long");
+        .HasColumnType("int");
 
         builder.Property(m => m.Precio)
         .IsRequired()
