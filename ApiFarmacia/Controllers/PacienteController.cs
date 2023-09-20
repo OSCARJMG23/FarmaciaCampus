@@ -1,16 +1,93 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Dominio.Entities;
+using AutoMapper;
+using Dominio.Interfaces;
+using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace ApiFarmacia.Controllers
+namespace ApiFarmacia.Controllers;
+
+public class PacienteController : BaseApiController
 {
+    private IUnitOfWork unitofwork;
+    private readonly IMapper mapper;
 
-    public class PacienteController : BaseApiController
+    public PacienteController(IUnitOfWork unitOfWork, IMapper mapper)
     {
+        this.unitofwork = unitOfWork;
+        this.mapper = mapper;
+    } 
 
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<PacienteDto>>> Get()
+    {
+        var paciente = await unitofwork.Pacientes.GetAllAsync();
+        return mapper.Map<List<PacienteDto>>(paciente);
+    }
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<PacientesDto>> Get(int id)
+    {
+        var pacientes = await unitofwork.Pacientes.GetByIdAsync(id);
+        return mapper.Map<PacientesDto>(pacientes);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Paciente>> Post(PacienteDto pacienteDto)
+    {
+        var paciente = this.mapper.Map<Paciente>(pacienteDto);
+        this.unitofwork.Pacientes.Add(paciente);
+        await unitofwork.SaveAsync();
+        if (paciente == null){
+            return BadRequest();
+        }
+        pacienteDto.Id = paciente.Id;
+        return CreatedAtAction(nameof(Post), new { id = pacienteDto.Id }, pacienteDto);
+    }
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<PacienteDto>> Put (int id, [FromBody]PacienteDto pacienteDto)
+    {
+        if(pacienteDto == null)
+            return NotFound();
+
+        var paciente = this.mapper.Map<Paciente>(pacienteDto);
+        unitofwork.Pacientes.Update(paciente);
+        await unitofwork.SaveAsync();
+        return pacienteDto;     
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+    public async Task<ActionResult> Delete (int id)
+    {
+        var paciente = await unitofwork.Pacientes.GetByIdAsync(id);
+
+        if (paciente == null)
+        {
+            return Notfound();
+        }
+
+        unitofwork.Pacientes.Remove(paciente);
+        await unitofwork.SaveAsync();
+        return NoContent();
+    }
+
+    private ActionResult Notfound()
+    {
+        throw new NotImplementedException();
     }
 }
