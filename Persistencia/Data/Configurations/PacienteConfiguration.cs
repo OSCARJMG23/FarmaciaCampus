@@ -17,12 +17,12 @@ public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(p => p.Direccion)
-        .IsRequired()
-        .HasMaxLength(50);
-
         builder.Property(p => p.Telefono)
         .IsRequired()
         .HasMaxLength(50);
+
+        builder.HasOne(p => p.Paciente)
+        .WithMany(p => p.Recetas)
+        .HasForeignKey(p => p.Id);
     }
 }
