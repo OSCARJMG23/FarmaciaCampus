@@ -22,10 +22,6 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
         .IsRequired()
         .HasColumnType("double");
 
-        builder.Property(c => c.Stock)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(c => c.FechaExpiracion)
         .IsRequired();
 
@@ -36,13 +32,5 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
         builder.HasOne(p => p.Proveedor)
         .WithMany(p => p.Medicamentos)
         .HasForeignKey(p => p.IdProveedorFk);
-
-        builder.HasMany(m => m.MedicamentosComprados)
-        .WithOne(m => m.Medicamento)
-        .HasForeignKey(m => m.IdMedicamentoFk);
-
-        builder.HasMany(m => m.MedicamentosVendidos)
-        .WithOne(m => m.Medicamento)
-        .HasForeignKey(m => m.IdMedicamentoFk);
     }
 }
