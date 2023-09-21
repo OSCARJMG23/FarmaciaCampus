@@ -9,7 +9,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private readonly ApiFarmaciaContext _context;
     private ICiudadRepository _ciudades;
     private IDepartamentoRepository _departamentos;
-    private IDetalleMovimientoRepository _detallesMovimientos;
     private IDireccionRepository _direcciones;
     private IEmpleadoRepository _empleados;
     private IFacturaRepository _facturas;
@@ -54,17 +53,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IDetalleMovimientoRepository DetallesMovimientos
-    {
-        get
-        {
-            if (_detallesMovimientos == null)
-            {
-                _detallesMovimientos = new DetalleMovimientoRepository(_context);
-            }
-            return _detallesMovimientos;
-        }
-    }
 
     public IDireccionRepository Direcciones
     {
