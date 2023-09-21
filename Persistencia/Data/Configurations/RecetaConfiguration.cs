@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Dominio.Entities;
 
 namespace Persistencia.Data.Configurations;
 
-public class RecetaConfiguration : IEntityTypeConfiguration<Receta>
+public class RecetaConfiguration : IEntityTypeConfiguration<RecetaMedica>
 {
-    public void Configure(EntityTypeBuilder<Receta> builder)
+    public void Configure(EntityTypeBuilder<RecetaMedica> builder)
     {
         builder.ToTable("receta");
 
@@ -24,5 +25,6 @@ public class RecetaConfiguration : IEntityTypeConfiguration<Receta>
         builder.HasOne(p => p.Paciente)
         .WithMany(p => p.Recetas)
         .HasForeignKey(p => p.IdPacienteFk);
+        
     }
 }

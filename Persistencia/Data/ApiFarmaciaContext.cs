@@ -11,7 +11,6 @@ public class ApiFarmaciaContext : DbContext
     }
     public DbSet<Ciudad> Ciudades { get; set; }
     public DbSet<Departamento> Departamentos { get; set; }
-    public DbSet<DetalleMovimientoInventario> DetallesInventarios { get; set; }
     public DbSet<Direccion> Direcciones { get; set; }
     public DbSet<Empleado> Empleados { get; set; }
     public DbSet<Factura> Facturas { get; set; }

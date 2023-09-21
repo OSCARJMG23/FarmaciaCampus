@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistencia.Data.Configurations;
 
-public class TipoMovimientoConfiguration : IEntityTypeConfiguration<TipoMovimiento>
+public class TipoMovimientoConfiguration : IEntityTypeConfiguration<TipoMovimientoInventario>
 {
-    public void Configure(EntityTypeBuilder<TipoMovimiento> builder)
+    public void Configure(EntityTypeBuilder<TipoMovimientoInventario> builder)
     {
         builder.ToTable("tipoMovimiento");
 

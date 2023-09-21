@@ -1,3 +1,4 @@
+using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,12 +17,6 @@ public class InventarioConfiguration : IEntityTypeConfiguration<Inventario>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(i  => i.IdMedicamentoFk)
-        .IsRequired()
-        .HasColumnType("int");
 
-        builder.HasOne(c => c.Inventario)
-        .WithMany(c => c.Medicamentos)
-        .HasForeignKey(c => c.IdMedicamentoFk);
     }
 }

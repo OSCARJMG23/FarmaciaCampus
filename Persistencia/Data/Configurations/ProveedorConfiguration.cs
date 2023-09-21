@@ -25,13 +25,9 @@ public class ProveedorConfiguration : IEntityTypeConfiguration<Proveedor>
         builder.Property(p => p.Direccion)
         .IsRequired()
         .HasMaxLength(50);
-
-        builder.Property(p => p.IdMedicamentoFk)
-        .IsRequired()
-        .HasColumnType("int");
-
-        builder.HasOne(p => p.Proveedor)
-        .WithMany(p => p.Medicamentos)
-        .HasForeignKey(p => p.IdMedicamentoFk);
+        
+        builder.HasOne(c => c.Direccion)
+        .WithMany(c => c.Proveedores)
+        .HasForeignKey(c => c.IdDireccionFk);
     }
 }

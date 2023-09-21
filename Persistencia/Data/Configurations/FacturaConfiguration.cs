@@ -1,3 +1,4 @@
+using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,20 +20,13 @@ public class FacturaConfiguration : IEntityTypeConfiguration<Factura>
         .IsRequired()
         .HasColumnType("double");
 
-        builder.Property(f  => f.IdMovimientoFk)
+        builder.Property(f  => f.IdFormaDePagoFk)
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(f  => f.IdFormaPagoFk)
-        .IsRequired()
-        .HasColumnType("int");
-
-        builder.HasOne(c => c.FormaPago)
+        builder.HasOne(c => c.FormaDePago)
         .WithMany(c => c.Facturas)
-        .HasForeignKey(c => c.IdFormaPagoFk);
+        .HasForeignKey(c => c.IdFormaDePagoFk);
 
-        builder.HasOne(c => c.Factura)
-        .WithMany(c => c.Movimientos)
-        .HasForeignKey(c => c.IdMovimientoFk);
     }
 }

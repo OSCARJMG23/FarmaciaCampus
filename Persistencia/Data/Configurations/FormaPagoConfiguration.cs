@@ -1,10 +1,11 @@
+using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistencia.Data.Configurations;
-public class FormaPagoConfiguration : IEntityTypeConfiguration<FormaPago>
+public class FormaPagoConfiguration : IEntityTypeConfiguration<FormaDePago>
 {
-    public void Configure(EntityTypeBuilder<FormaPago> builder)
+    public void Configure(EntityTypeBuilder<FormaDePago> builder)
     {
         builder.ToTable("formaPago");
 
@@ -12,8 +13,9 @@ public class FormaPagoConfiguration : IEntityTypeConfiguration<FormaPago>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(f  => f.Descripcion)
+        builder.Property(f  => f.Nombre)
         .IsRequired()
         .HasMaxLength(50);
+
     }
 }

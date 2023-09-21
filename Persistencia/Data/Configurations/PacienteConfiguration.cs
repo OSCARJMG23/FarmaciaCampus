@@ -21,12 +21,9 @@ public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(p => p.IdRecetaFk)
-        .IsRequired()
-        .HasColumnType("int");
 
-        builder.HasOne(p => p.Paciente)
-        .WithMany(p => p.Recetas)
-        .HasForeignKey(p => p.IdRecetaFk);
+        builder.HasOne(c => c.Direccion)
+        .WithMany(c => c.Pacientes)
+        .HasForeignKey(c => c.IdDireccionFk);
     }
 }

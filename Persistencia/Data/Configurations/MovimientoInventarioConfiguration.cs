@@ -16,11 +16,11 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
 
         builder.Property(m => m.Cantidad)
         .IsRequired()
-        .HasMaxLenght(50);
+        .HasColumnType("int");
 
         builder.Property(m => m.Precio)
         .IsRequired()
-        .HasMaxLenght(50);
+        .HasColumnType("int");
 
         builder.Property(m => m.FechaMovimiento)
         .IsRequired();
@@ -42,11 +42,15 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
         .HasForeignKey(p => p.IdEmpleadoFk);
 
         builder.HasOne(m => m.Paciente)
-        .WithMany(m => m.MovimientosInventarios)
+        .WithMany(m => m.MovimientosInventario)
         .HasForeignKey(p => p.IdPacienteFk);
 
-        builder.HasOne(m => m.TipoMovimiento)
-        .WithMany(m => m.MovimientosInventarios)
+        builder.HasOne(m => m.TipoMovimientoInventario)
+        .WithMany(m => m.MovimientosInventario)
         .HasForeignKey(p => p.IdTipoMovimientoFk);
+
+        builder.HasOne(c => c.Factura)
+        .WithMany(c => c.MovimientosInventario)
+        .HasForeignKey(c => c.IdFacturaFk);
     }
 }

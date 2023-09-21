@@ -1,3 +1,4 @@
+using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,7 +22,7 @@ public class DireccionConfiguration : IEntityTypeConfiguration<Direccion>
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(p => p.NumeroViaSecundario)
+        builder.Property(p => p.NumeroViaSecundaria)
         .HasMaxLength(50);
 
         builder.Property(p => p.Barrio)
@@ -36,24 +37,10 @@ public class DireccionConfiguration : IEntityTypeConfiguration<Direccion>
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(p => p.IdProveedorFk)
-        .IsRequired()
-        .HasColumnType("int");
-
-        builder.Property(p => p.IdPacienteFk)
-        .IsRequired()
-        .HasColumnType("int");
 
         builder.HasOne(c => c.Ciudad)
         .WithMany(c => c.Direcciones)
         .HasForeignKey(c => c.IdCiudadFk);
 
-        builder.HasOne(c => c.Direccion)
-        .WithMany(c => c.Clientes)
-        .HasForeignKey(c => c.IdPacienteFk);
-
-        builder.HasOne(c => c.Direccion)
-        .WithMany(c => c.Proveedores)
-        .HasForeignKey(c => c.IdProveedorFk);
     }
 }
