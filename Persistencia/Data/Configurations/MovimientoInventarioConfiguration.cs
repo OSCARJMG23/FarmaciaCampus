@@ -24,5 +24,29 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
 
         builder.Property(m => m.FechaMovimiento)
         .IsRequired();
+
+        builder.Property(m => m.IdEmpleadoFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.Property(m => m.IdPacienteFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.Property(m => m.IdTipoMovimientoFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.HasOne(m => m.Empleado)
+        .WithMany(m => m.MovimientosInventarios)
+        .HasForeignKey(p => p.IdEmpleadoFk);
+
+        builder.HasOne(m => m.Paciente)
+        .WithMany(m => m.MovimientosInventarios)
+        .HasForeignKey(p => p.IdPacienteFk);
+
+        builder.HasOne(m => m.TipoMovimiento)
+        .WithMany(m => m.MovimientosInventarios)
+        .HasForeignKey(p => p.IdTipoMovimientoFk);
     }
 }

@@ -9,12 +9,20 @@ public class CiudadConfiguration : IEntityTypeConfiguration<Ciudad>
     {
         builder.ToTable("ciudad");
 
-        builder.Property(p => p.Id)
+        builder.Property(c => c.Id)
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(p => p.Nombre)
+        builder.Property(c => c.Nombre)
         .IsRequired()
         .HasMaxLength(50);
+
+        builder.Property(c => c.IdDepartamentoFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.HasOne(c => c.Departamento)
+        .WithMany(c => c.Ciudades)
+        .HasForeignKey(c => c.IdDepartamentoFk);
     }
 }

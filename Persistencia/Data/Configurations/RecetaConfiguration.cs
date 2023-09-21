@@ -16,5 +16,13 @@ public class RecetaConfiguration : IEntityTypeConfiguration<Receta>
         builder.Property(r => r.Descripcion)
         .IsRequired()
         .HasMaxLength(50);
+
+        builder.Property(r => r.IdPacienteFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.HasOne(p => p.Paciente)
+        .WithMany(p => p.Recetas)
+        .HasForeignKey(p => p.IdPacienteFk);
     }
 }

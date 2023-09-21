@@ -10,39 +10,43 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
     {
         builder.ToTable ("medicamento");
 
-        builder.Property(c => c.Id)
+        builder.Property(m => m.Id)
         .IsRequired()
         .HasColumnType("int");
 
-        builder.Property(c => c.Nombre)
+        builder.Property(m => m.Nombre)
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(c => c.Precio)
+        builder.Property(m => m.Precio)
         .IsRequired()
         .HasColumnType("double");
 
-        builder.Property(c => c.Stock)
-        .IsRequired()
-        .HasColumnType("int");
-
-        builder.Property(c => c.FechaExpiracion)
+        builder.Property(m => m.FechaExpiracion)
         .IsRequired();
 
-        builder.Property(c => c.IdProveedorFk)
+        builder.Property(m => m.IdProveedorFk)
         .IsRequired()
         .HasColumnType("int");
 
-        builder.HasOne(p => p.Proveedor)
-        .WithMany(p => p.Medicamentos)
+        builder.Property(m => m.IdPresentacionFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.Property(m => m.IdMarcaFk)
+        .IsRequired()
+        .HasColumnType("int");
+
+        builder.HasOne(m => m.Proveedor)
+        .WithMany(m => m.Medicamentos)
         .HasForeignKey(p => p.IdProveedorFk);
 
-        builder.HasMany(m => m.MedicamentosComprados)
-        .WithOne(m => m.Medicamento)
-        .HasForeignKey(m => m.IdMedicamentoFk);
+        builder.HasOne(m => m.Marca)
+        .WithMany(m => m.Medicamentos)
+        .HasForeignKey(m => m.IdMarcaFk);
 
-        builder.HasMany(m => m.MedicamentosVendidos)
-        .WithOne(m => m.Medicamento)
-        .HasForeignKey(m => m.IdMedicamentoFk);
+        builder.HasOne(m => m.Presentacion)
+        .WithMany(m => m.Medicamentos)
+        .HasForeignKey(m => m.IdPresentacionFk);
     }
 }

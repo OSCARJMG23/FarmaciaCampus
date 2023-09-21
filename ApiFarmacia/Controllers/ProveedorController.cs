@@ -3,7 +3,6 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace ApiFarmacia.Controllers;
 
