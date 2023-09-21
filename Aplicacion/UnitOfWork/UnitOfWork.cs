@@ -7,15 +7,75 @@ namespace Aplicacion.UnitOfWork;
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly ApiFarmaciaContext _context;
+    private ICiudadRepository _ciudades;
+    private IDepartamentoRepository _departamentos;
+    private IDetalleMovimientoRepository _detallesMovimientos;
+    private IDireccionRepository _direcciones;
     private IEmpleadoRepository _empleados;
-    private IPacienteRepository _pacientes;
-    private IProveedorRepository _proveedores;
-    private ICompraRepository _compras;
+    private IFacturaRepository _facturas;
+    private IFormaPagoRepository _formaPagos;
+    private IInventarioRepository _inventarios;
+    private IMarcaRepository _marcas;
     private IMedicamentoRepository _medicamentos;
-    private IVentaRepository _ventas;
+    private IMovimientoInventarioRepository _movimientosInventarios;
+    private IPacienteRepository _pacientes;
+    private IPaisRepository _paises;
+    private IPresentacionRepository _presentaciones;
+    private IProveedorRepository _proveedores;
+    private IRecetaRepository _recetas;
+    private ITipoMovimientoRepository _tiposMovimientos;
+
     public UnitOfWork(ApiFarmaciaContext context)
     {
         _context = context;
+    }
+
+    public ICiudadRepository Ciudades
+    {
+        get
+        {
+            if (_ciudades == null)
+            {
+                _ciudades = new CiudadRepository(_context);
+            }
+            return _ciudades;
+        }
+    }
+
+    public IDepartamentoRepository Departamentos
+    {
+        get
+        {
+            if (_departamentos == null)
+            {
+                _departamentos = new DepartamentoRepository(_context);
+            }
+            return _departamentos;
+        }
+    }
+
+    public IDetalleMovimientoRepository DetallesMovimientos
+    {
+        get
+        {
+            if (_detallesMovimientos == null)
+            {
+                _detallesMovimientos = new DetalleMovimientoRepository(_context);
+            }
+            return _detallesMovimientos;
+        }
+    }
+
+    public IDireccionRepository Direcciones
+    {
+        get
+        {
+            if (_direcciones == null)
+            {
+                _direcciones = new DireccionRepository(_context);
+            }
+            return _direcciones;
+        }
     }
 
     public IEmpleadoRepository Empleados
@@ -30,39 +90,51 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IPacienteRepository Pacientes
+    public IFacturaRepository Facturas
     {
         get
         {
-            if (_pacientes == null)
+            if (_facturas == null)
             {
-                _pacientes = new PacienteRepository(_context);
+                _facturas = new FacturaRepository(_context);
             }
-            return _pacientes;
+            return _facturas;
         }
     }
 
-    public IProveedorRepository Proveedores
+    public IFormaPagoRepository FormaPagos
     {
         get
         {
-            if (_proveedores == null)
+            if (_formaPagos == null)
             {
-                _proveedores = new ProveedorRepository(_context);
+                _formaPagos = new FormaPagoRepository(_context);
             }
-            return _proveedores;
+            return _formaPagos;
         }
     }
 
-    public ICompraRepository Compras
+    public IInventarioRepository Inventarios
     {
         get
         {
-            if (_compras == null)
+            if (_inventarios == null)
             {
-                _compras = new CompraRepository(_context);
+                _inventarios = new InventarioRepository(_context);
             }
-            return _compras;
+            return _inventarios;
+        }
+    }
+
+    public IMarcaRepository Marcas
+    {
+        get
+        {
+            if (_marcas == null)
+            {
+                _marcas = new MarcaRepository(_context);
+            }
+            return _marcas;
         }
     }
 
@@ -78,15 +150,87 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IVentaRepository Ventas
+    public IMovimientoInventarioRepository MovimientosInventarios
     {
         get
         {
-            if (_ventas == null)
+            if (_movimientosInventarios == null)
             {
-                _ventas = new VentaRepository(_context);
+                _movimientosInventarios = new MovimientoInventarioRepository(_context);
             }
-            return _ventas;
+            return _movimientosInventarios;
+        }
+    }
+
+    public IPacienteRepository Pacientes
+    {
+        get
+        {
+            if (_pacientes == null)
+            {
+                _pacientes = new PacienteRepository(_context);
+            }
+            return _pacientes;
+        }
+    }
+
+    public IPaisRepository Paises
+    {
+        get
+        {
+            if (_paises == null)
+            {
+                _paises = new PaisRepository(_context);
+            }
+            return _paises;
+        }
+    }
+
+    public IPresentacionRepository Presentaciones
+    {
+        get
+        {
+            if (_presentaciones == null)
+            {
+                _presentaciones = new PresentacionRepository(_context);
+            }
+            return _presentaciones;
+        }
+    }
+
+    public IProveedorRepository Proveedores
+    {
+        get
+        {
+            if (_proveedores == null)
+            {
+                _proveedores = new ProveedorRepository(_context);
+            }
+            return _proveedores;
+        }
+    }
+
+    public IRecetaRepository Recetas
+    {
+        get
+        {
+            if (_recetas == null)
+            {
+                _recetas = new RecetaRepository(_context);
+            }
+            return _recetas;
+        }
+    }
+
+    public ITipoMovimientoRepository TiposMovimientos
+    {
+        get
+        {
+            if (_tiposMovimientos == null)
+            {
+                _tiposMovimientos = new TipoMovimientoRepository(_context);
+            }
+            return _tiposMovimientos;
         }
     }
 

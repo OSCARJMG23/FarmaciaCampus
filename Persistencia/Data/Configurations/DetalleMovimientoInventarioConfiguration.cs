@@ -8,20 +8,26 @@ public class DetalleMovimientoInventarioConfiguration : IEntityTypeConfiguration
     {
         builder.ToTable("detalleMovimientoInventario");
 
-        builder.Property(c => c.IdInventarioFk)
-        .IsRequired()
-        .HasColumnType("int");
+        builder
+            .HasMany(d => d.Inventarios)
+            .WithMany(d => d.MovimientosInventarios)
+            .UsingEntity<DetalleMovimientoInventario>(
 
-        builder.Property(c => c.IdMovimientoInventarioFk)
-        .IsRequired()
-        .HasColumnType("int");
+                d => d
+                .HasOne(pt => pt.Inventario)
+                .WithMany(t => t.MovimientosInventarios)
+                .HasForeignKey(ut => ut.IdInventarioFk),
 
-        builder.HasOne(c => c.Inventario)
-        .WithMany(c => c.DetallesMovimientosInventarios)
-        .HasForeignKey(c => c.IdInventarioFk);
 
-        builder.HasOne(c => c.MovimientoInventario)
-        .WithMany(c => c.DetallesMovimientosInventarios)
-        .HasForeignKey(c => c.IdMovimientoInventarioFk);
+                d => d
+                .HasOne(et => et.MovimientoInventario)
+                .WithMany(et => et.MovimientosInventarios)
+                .HasForeignKey(el => el.IdMovimientoInventarioFk),
+
+                d =>
+                {
+                    d.HasKey(t => new { t.IdInventarioFk, t.IdMovimientoInventarioFk });
+
+                });
     }
 }
