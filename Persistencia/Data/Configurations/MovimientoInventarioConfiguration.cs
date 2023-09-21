@@ -10,10 +10,6 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
     {
         builder.ToTable("movimientoInventario");
 
-        builder.Property(m => m.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(m => m.Cantidad)
         .IsRequired()
         .HasColumnType("int");

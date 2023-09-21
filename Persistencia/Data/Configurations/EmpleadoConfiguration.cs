@@ -9,10 +9,6 @@ public class EmpleadoConfiguration : IEntityTypeConfiguration<Empleado>
     {
         builder.ToTable("empleado");
 
-        builder.Property(e => e.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(e => e.Nombre)
         .IsRequired()
         .HasMaxLength(50);

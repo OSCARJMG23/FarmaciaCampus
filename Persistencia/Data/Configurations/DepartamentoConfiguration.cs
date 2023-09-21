@@ -10,10 +10,6 @@ public class DepartamentoConfiguration : IEntityTypeConfiguration<Departamento>
     {
         builder.ToTable("departamento");
 
-        builder.Property(p => p.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(p => p.Nombre)
         .IsRequired()
         .HasMaxLength(50);

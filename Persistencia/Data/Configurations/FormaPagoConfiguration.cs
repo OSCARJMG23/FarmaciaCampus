@@ -9,9 +9,6 @@ public class FormaPagoConfiguration : IEntityTypeConfiguration<FormaDePago>
     {
         builder.ToTable("formaPago");
 
-        builder.Property(f  => f.Id)
-        .IsRequired()
-        .HasColumnType("int");
 
         builder.Property(f  => f.Nombre)
         .IsRequired()

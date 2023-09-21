@@ -9,10 +9,6 @@ public class FacturaConfiguration : IEntityTypeConfiguration<Factura>
     {
         builder.ToTable("factura");
 
-        builder.Property(f  => f.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(f  => f.Fecha)
         .IsRequired();
 

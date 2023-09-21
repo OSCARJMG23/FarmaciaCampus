@@ -9,10 +9,6 @@ public class InventarioConfiguration : IEntityTypeConfiguration<Inventario>
     {
         builder.ToTable("inventario");
 
-        builder.Property(i  => i.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(i  => i.Stock)
         .IsRequired()
         .HasColumnType("int");

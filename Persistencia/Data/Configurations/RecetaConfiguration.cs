@@ -10,10 +10,6 @@ public class RecetaConfiguration : IEntityTypeConfiguration<RecetaMedica>
     {
         builder.ToTable("receta");
 
-        builder.Property(r => r.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(r => r.Descripcion)
         .IsRequired()
         .HasMaxLength(50);

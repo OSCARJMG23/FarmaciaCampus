@@ -10,10 +10,6 @@ public class CiudadConfiguration : IEntityTypeConfiguration<Ciudad>
     {
         builder.ToTable("ciudad");
 
-        builder.Property(c => c.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(c => c.Nombre)
         .IsRequired()
         .HasMaxLength(50);

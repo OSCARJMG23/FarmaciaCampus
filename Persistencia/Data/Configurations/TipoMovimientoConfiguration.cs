@@ -10,10 +10,6 @@ public class TipoMovimientoConfiguration : IEntityTypeConfiguration<TipoMovimien
     {
         builder.ToTable("tipoMovimiento");
 
-        builder.Property(t => t.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(t => t.Nombre)
         .IsRequired()
         .HasMaxLength(50);

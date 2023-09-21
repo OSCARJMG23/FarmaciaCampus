@@ -10,10 +10,6 @@ public class ProveedorConfiguration : IEntityTypeConfiguration<Proveedor>
     {
         builder.ToTable("proveedor");
 
-        builder.Property(p => p.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(p => p.Nombre)
         .IsRequired()
         .HasMaxLength(50);
@@ -22,9 +18,6 @@ public class ProveedorConfiguration : IEntityTypeConfiguration<Proveedor>
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(p => p.Direccion)
-        .IsRequired()
-        .HasMaxLength(50);
         
         builder.HasOne(c => c.Direccion)
         .WithMany(c => c.Proveedores)

@@ -10,10 +10,6 @@ public class PaisConfiguration : IEntityTypeConfiguration<Pais>
     {
         builder.ToTable("pais");
 
-        builder.Property(p => p.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(p => p.Nombre)
         .IsRequired()
         .HasMaxLength(50);

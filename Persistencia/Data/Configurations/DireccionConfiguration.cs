@@ -10,9 +10,6 @@ public class DireccionConfiguration : IEntityTypeConfiguration<Direccion>
     {
         builder.ToTable("direccion");
 
-        builder.Property(p => p.Id)
-        .IsRequired()
-        .HasColumnType("int");
 
         builder.Property(p => p.TipoViaPrincipal)
         .IsRequired()

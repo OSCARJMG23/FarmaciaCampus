@@ -9,10 +9,6 @@ public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
     {
         builder.ToTable("paciente");
 
-        builder.Property(p => p.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(p => p.Nombre)
         .IsRequired()
         .HasMaxLength(50);
@@ -20,7 +16,6 @@ public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
         builder.Property(p => p.Telefono)
         .IsRequired()
         .HasMaxLength(50);
-
 
         builder.HasOne(c => c.Direccion)
         .WithMany(c => c.Pacientes)

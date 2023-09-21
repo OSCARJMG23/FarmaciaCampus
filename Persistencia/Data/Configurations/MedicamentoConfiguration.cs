@@ -10,10 +10,6 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
     {
         builder.ToTable ("medicamento");
 
-        builder.Property(m => m.Id)
-        .IsRequired()
-        .HasColumnType("int");
-
         builder.Property(m => m.Nombre)
         .IsRequired()
         .HasMaxLength(50);
