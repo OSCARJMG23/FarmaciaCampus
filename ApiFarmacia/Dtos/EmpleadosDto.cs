@@ -1,3 +1,5 @@
+using Persistencia.Data.Configurations;
+
 namespace ApiFarmacia.Dtos;
 
 public class EmpleadosDto

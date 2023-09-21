@@ -1,8 +1,8 @@
 namespace ApiFarmacia.Dtos;
 
-public class ProveedorDto
+public class CiudadesDto
 {
     public int Id { get; set; }
     public string Nombre { get; set; }
-    public string Contacto { get; set; }
+    public List<PacienteDto> Pacientes { get; set; }
 }
