@@ -18,6 +18,6 @@ namespace Dominio.Entities
         public TipoMovimientoInventario TipoMovimientoInventario { get; set; }
         public int IdFacturaFk { get; set; }
         public Factura Factura { get; set; }
-        public ICollection<DetalleMovimientoInventario> DetallesMovimientoInventario { get; set; }
+
     }
 }

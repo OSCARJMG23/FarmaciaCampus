@@ -4,12 +4,11 @@ public interface IUnitOfWork
 {
     ICiudadRepository Ciudades { get; }
     IDepartamentoRepository Departamentos { get; }
-    IDetalleMovimientoRepository DetallesMovimientos { get; }
     IDireccionRepository Direcciones { get; }
     IEmpleadoRepository Empleados { get; }
     IFacturaRepository Facturas { get; }
     IFormaPagoRepository FormaPagos { get; }
-    IInvetarioRepository Invetarios { get; }
+    IInventarioRepository Inventarios { get; }
     IMarcaRepository Marcas { get; }
     IMedicamentoRepository Medicamentos { get; }
     IMovimientoInventarioRepository MovimientosInventarios { get; }

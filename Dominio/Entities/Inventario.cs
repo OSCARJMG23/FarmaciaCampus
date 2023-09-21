@@ -9,7 +9,6 @@ namespace Dominio.Entities
     {
         public int Stock { get; set; }
         public ICollection<Medicamento> Medicamentos { get; set; }
-        public ICollection<DetalleMovimientoInventario> DetallesMovimientoInventario { get; set; }
 
     }
 }
