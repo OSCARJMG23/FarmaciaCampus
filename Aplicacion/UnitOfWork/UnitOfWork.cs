@@ -10,9 +10,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IEmpleadoRepository _empleados;
     private IPacienteRepository _pacientes;
     private IProveedorRepository _proveedores;
-    private ICompraRepository _compras;
     private IMedicamentoRepository _medicamentos;
-    private IVentaRepository _ventas;
     public UnitOfWork(ApiFarmaciaContext context)
     {
         _context = context;
@@ -54,17 +52,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public ICompraRepository Compras
-    {
-        get
-        {
-            if (_compras == null)
-            {
-                _compras = new CompraRepository(_context);
-            }
-            return _compras;
-        }
-    }
 
     public IMedicamentoRepository Medicamentos
     {
@@ -75,18 +62,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _medicamentos = new MedicamentoRepository(_context);
             }
             return _medicamentos;
-        }
-    }
-
-    public IVentaRepository Ventas
-    {
-        get
-        {
-            if (_ventas == null)
-            {
-                _ventas = new VentaRepository(_context);
-            }
-            return _ventas;
         }
     }
 
