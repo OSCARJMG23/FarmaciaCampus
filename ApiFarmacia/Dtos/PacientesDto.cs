@@ -10,5 +10,5 @@ public class PacientesDto
     public string Telefono { get; set; }    
     public int IdDireccionFk { get; set; }    
     public List<MovimientoInventario> MovimientosInventarios { get; set; }
-    public List<Receta> Recetas { get; set; }
+    public List<RecetaMedica> Recetas { get; set; }
 }

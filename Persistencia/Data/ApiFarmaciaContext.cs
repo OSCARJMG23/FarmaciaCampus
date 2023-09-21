@@ -11,11 +11,11 @@ public class ApiFarmaciaContext : DbContext
     }
     public DbSet<Ciudad> Ciudades { get; set; }
     public DbSet<Departamento> Departamentos { get; set; }
-    public DbSet<DetalleInventario> DetallesInventarios { get; set; }
+    public DbSet<DetalleMovimientoInventario> DetallesInventarios { get; set; }
     public DbSet<Direccion> Direcciones { get; set; }
     public DbSet<Empleado> Empleados { get; set; }
     public DbSet<Factura> Facturas { get; set; }
-    public DbSet<FormaPago> FormaPagos { get; set; }
+    public DbSet<FormaDePago> FormaPagos { get; set; }
     public DbSet<Inventario> Inventarios { get; set; }
     public DbSet<Marca> Marcas { get; set; }
     public DbSet<Medicamento> Medicamentos { get; set; }
@@ -24,8 +24,8 @@ public class ApiFarmaciaContext : DbContext
     public DbSet<Pais> Paises { get; set; }
     public DbSet<Presentacion> Presentaciones { get; set; }
     public DbSet<Proveedor> Proveedores { get; set; }
-    public DbSet<Receta> Recetas { get; set; }
-    public DbSet<TipoMovimiento> TiposMovimientos { get; set; }
+    public DbSet<RecetaMedica> Recetas { get; set; }
+    public DbSet<TipoMovimientoInventario> TiposMovimientos { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
