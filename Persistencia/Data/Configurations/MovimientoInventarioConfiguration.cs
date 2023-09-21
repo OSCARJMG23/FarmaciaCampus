@@ -16,11 +16,11 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
 
         builder.Property(m => m.Cantidad)
         .IsRequired()
-        .HasMaxLenght(50);
+        .HasMaxLength(50);
 
         builder.Property(m => m.Precio)
         .IsRequired()
-        .HasMaxLenght(50);
+        .HasMaxLength(50);
 
         builder.Property(m => m.FechaMovimiento)
         .IsRequired();

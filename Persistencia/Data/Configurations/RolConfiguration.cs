@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiFarmacia.Helpers
+namespace Persistencia.Data.Configurations
 {
-    public class blanco
+    public class RolConfiguration
     {
         
     }

@@ -19,7 +19,7 @@ public interface IUnitOfWork
     IProveedorRepository Proveedores { get; }
     IRecetaRepository Recetas { get; }
     ITipoMovimientoRepository TiposMovimientos { get; }
-
+    IRol Roles { get; }
 
     Task<int> SaveAsync();
 }

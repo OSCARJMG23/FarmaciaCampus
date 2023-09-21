@@ -24,6 +24,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IProveedorRepository _proveedores;
     private IRecetaRepository _recetas;
     private ITipoMovimientoRepository _tiposMovimientos;
+    private IRol _roles;
 
     public UnitOfWork(ApiFarmaciaContext context)
     {
@@ -231,6 +232,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _tiposMovimientos = new TipoMovimientoRepository(_context);
             }
             return _tiposMovimientos;
+        }
+    }
+
+    public IRol Roles
+    {
+        get
+        {
+            if (_roles == null)
+            {
+                _roles = new RolRepository(_context);
+            }
+            return _roles;
         }
     }
 

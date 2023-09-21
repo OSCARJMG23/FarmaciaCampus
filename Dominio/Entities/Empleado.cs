@@ -11,5 +11,6 @@ namespace Dominio.Entities
         public string Cargo { get; set; }
         public DateTime FechaContratacion { get; set; }
         public ICollection<MovimientoInventario> MovimientosInventarios { get; set; }
+        public ICollection<Rol> Rols { get; set; } = new HashSet<Rol>();
     }
 }
