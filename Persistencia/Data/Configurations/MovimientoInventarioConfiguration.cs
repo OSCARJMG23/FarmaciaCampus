@@ -48,5 +48,9 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
         builder.HasOne(c => c.Factura)
         .WithMany(c => c.MovimientosInventario)
         .HasForeignKey(c => c.IdFacturaFk);
+
+        builder.HasOne(d=> d.Inventario)
+        .WithMany(d=> d.MovimientosInventario)
+        .HasForeignKey(d=>d.IdInventarioFk);
     }
 }
