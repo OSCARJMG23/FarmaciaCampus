@@ -13,11 +13,4 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         _context = context;
     }
 
-    public virtual void menosCincuentaUnit(Medicamento)
-    {
-        foreach(medicamento in Medicamentos)
-        {
-            
-        }
-    }
 }
