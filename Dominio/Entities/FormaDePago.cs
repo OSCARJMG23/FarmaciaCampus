@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entities
 {
-    public class FormaDePago
+    public class FormaDePago : BaseEntity
     {
-        
+        public string Nombre { get; set; }
+        public ICollection<Factura> Facturas { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace Dominio.Entities
         public string Nombre { get; set; }
         public string Cargo { get; set; }
         public DateTime FechaContratacion { get; set; }
-        public ICollection<Venta> Ventas { get; set; }
+        public ICollection<MovimientoInventario> MovimientosInventarios { get; set; }
     }
 }

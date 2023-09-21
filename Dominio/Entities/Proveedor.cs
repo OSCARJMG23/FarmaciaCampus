@@ -9,8 +9,8 @@ namespace Dominio.Entities
     {
         public string Nombre { get; set; }
         public string Contacto { get; set; }
-        public string Direccion { get; set; }
-        public ICollection<Compra> Compras { get; set; }
+        public int IdDireccionFk { get; set; }
+        public Direccion Direccion { get; set; }
         public ICollection<Medicamento> Medicamentos { get; set; }
     }
 }

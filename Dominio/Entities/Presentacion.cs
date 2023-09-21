@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entities
 {
-    public class Presentacion
+    public class Presentacion : BaseEntity
     {
         public string Nombre { get; set; }
+        public ICollection<Medicamento> Medicamentos { get; set; }
     }
 }

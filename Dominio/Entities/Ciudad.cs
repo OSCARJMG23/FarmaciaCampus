@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entities
 {
-    public class Ciudad
+    public class Ciudad : BaseEntity
     {
         public string Nombre { get; set; }
         public Departamento Departamento { get; set; }

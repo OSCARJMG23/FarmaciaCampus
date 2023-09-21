@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entities
 {
-    public class Inventario
+    public class Inventario : BaseEntity
     {
-        
+        public int Stock { get; set; }
+        public ICollection<Medicamento> Medicamentos { get; set; }
+        public ICollection<DetalleMovimientoInventario> DetallesMovimientoInventario { get; set; }
+
     }
 }

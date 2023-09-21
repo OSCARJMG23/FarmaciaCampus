@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entities
 {
-    public class Direccion
+    public class Direccion : BaseEntity
     {
         public string TipoViaPrincipal { get; set; }
         public int NumeroViaPrincipal { get; set; }
@@ -15,5 +15,6 @@ namespace Dominio.Entities
         public int IdCiudadFk { get; set; }
         public Ciudad Ciudad { get; set; }
         public ICollection<Paciente> Pacientes { get; set; }
+        public ICollection<Proveedor> Proveedores { get; set; }
     }
 }
