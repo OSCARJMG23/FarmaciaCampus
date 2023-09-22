@@ -36,6 +36,7 @@ public class MovimientoInventarioController : BaseApiController
         var movimientosInventarios = await unitofwork.MovimientosInventarios.GetByIdAsync(id);
         return mapper.Map<MovimientoInventario>(movimientosInventarios);
     }
+    
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
