@@ -13,4 +13,18 @@ public class RolRepository : GenericRepository<Rol>, IRolRepository
     {
         _context = context;
     }
+
+    public override async Task<IEnumerable<Rol>> GetAllAsync()
+    {
+        return await _context.Rols 
+            .Include(p => p.Empleados)
+            .ToListAsync();
+    }
+
+    public override async Task<Rol> GetByIdAsync(int id)
+    {
+        return await _context.Rols
+        .Include(p => p.Empleados)
+        .FirstOrDefaultAsync(p => p.Id == id);
+    }
 }

@@ -7,13 +7,13 @@ using ApiFarmacia.Services;
 
 namespace ApiFarmacia.Controllers;
 
-public class DepartamentoController : BaseApiController
+public class EmpleadoController : BaseApiController
 {
     private readonly IEmpleadoService _empleadoService;
     private IUnitOfWork unitofwork;
     private readonly IMapper mapper;
 
-    public DepartamentoController(IUnitOfWork unitOfWork, IMapper mapper)
+    public EmpleadoController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         this.unitofwork = unitOfWork;
         this.mapper = mapper;
