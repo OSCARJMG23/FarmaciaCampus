@@ -189,13 +189,4 @@ public class EmpleadoService : IEmpleadoService
         return jwtSecurityToken;
     }
 
-    Task<PacientesDto> IEmpleadoService.GetTokenAsync(LoginDto model)
-    {
-        throw new NotImplementedException();
-    }
-
-    Task<PacientesDto> IEmpleadoService.RefreshTokenAsync(string refreshToken)
-    {
-        throw new NotImplementedException();
-    }
 }

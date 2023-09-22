@@ -1,7 +1,6 @@
 using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Dominio.Entities;
 
 namespace Persistencia.Data.Configurations;
 

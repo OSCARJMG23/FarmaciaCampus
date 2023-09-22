@@ -1,3 +1,5 @@
+using Dominio.Entities;
+
 namespace Dominio.Interfaces;
 
 public interface IUnitOfWork
@@ -18,7 +20,7 @@ public interface IUnitOfWork
     IProveedorRepository Proveedores { get; }
     IRecetaRepository Recetas { get; }
     ITipoMovimientoRepository TiposMovimientos { get; }
-    IRol Roles { get; }
+    IRolRepository Roles { get; }
 
     Task<int> SaveAsync();
 }

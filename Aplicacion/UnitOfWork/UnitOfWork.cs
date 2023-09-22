@@ -1,4 +1,5 @@
 using Aplicacion.Repository;
+using Dominio.Entities;
 using Dominio.Interfaces;
 using Persistencia.Data;
 
@@ -23,7 +24,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IProveedorRepository _proveedores;
     private IRecetaRepository _recetas;
     private ITipoMovimientoRepository _tiposMovimientos;
-    private IRol _roles;
+    private IRolRepository _roles;
 
     public UnitOfWork(ApiFarmaciaContext context)
     {
@@ -223,7 +224,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IRol Roles
+    public IRolRepository Roles
     {
         get
         {
