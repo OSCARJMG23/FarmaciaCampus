@@ -4,10 +4,9 @@ public class Authorization
 {
     public enum Roles
     {
-        Administrator,
-        Manager,
-        Employee
+        Administrador,
+        Empleado
     }
 
-    public const Roles rol_default = Roles.Administrator;
+    public const Roles rol_default = Roles.Administrador;
 }

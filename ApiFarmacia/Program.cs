@@ -1,3 +1,4 @@
+using System.Reflection;
 using ApiFarmacia.Extensions;
 using AspNetCoreRateLimit;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAplicacionServices();
+builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.AddJwt(builder.Configuration);
 builder.Services.ConfigureCors();
 builder.Services.ConfiguraRatelimiting();

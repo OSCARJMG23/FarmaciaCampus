@@ -10,6 +10,7 @@ public class EmpleadosDto
     public int Id { get; set; }
     public string Nombre { get; set; }
     public string Cargo { get; set; }
+    public string Password { get; set; }
     public string Token { get; set; }
     public List<MovimientoInventario> MovimientosInventarios { get; set; }
     public List<string> Roles { get; set; }
