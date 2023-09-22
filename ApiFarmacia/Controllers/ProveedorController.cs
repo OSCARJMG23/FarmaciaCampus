@@ -38,7 +38,7 @@ public class ProveedorController : BaseApiController
         return mapper.Map<ProveedoresDto>(proveedores);
     }
 
-    [HttpGet("proveedorMedica")]
+    [HttpGet("proveedorMedica")] 
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

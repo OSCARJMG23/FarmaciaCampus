@@ -13,4 +13,6 @@ public class PacienteRepository : GenericRepository<Paciente>, IPacienteReposito
     {
         _context = context;
     }
+
+    
 }

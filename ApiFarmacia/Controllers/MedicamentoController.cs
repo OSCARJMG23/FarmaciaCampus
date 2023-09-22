@@ -13,7 +13,7 @@ public class MedicamentoController : BaseApiController
 
     public MedicamentoController(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        this.unitofwork = unitOfWork;
+        this.unitofwork = unitOfWork; 
         this.mapper = mapper;
     } 
 
@@ -43,8 +43,48 @@ public class MedicamentoController : BaseApiController
 
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetStock50()
     {
-    var medicamento = await unitofwork.Medicamentos.GetStockCincu();
-    return mapper.Map<List<MedicamentoDto>>(medicamento);
+        var medicamento = await unitofwork.Medicamentos.GetStockCincu();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+
+    [HttpGet("GetCadu2024")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetCadu2024()
+    {
+        var medicamento = await unitofwork.Medicamentos.Get2024Expiracion();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+    
+    [HttpGet("GetParacetamol")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetParacetamol()
+    {
+        var medicamento = await unitofwork.Medicamentos.GetParacetamol();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+
+    [HttpGet("Get2024Expi")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> Get2024Expi()
+    {
+        var medicamento = await unitofwork.Medicamentos.Get2024DespuExpiracion();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+
+    [HttpGet("GetMedisMarzo")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetMedisMarzo()
+    {
+        var medicamento = await unitofwork.Medicamentos.GetMarzo();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
     }
 
     [HttpPost]

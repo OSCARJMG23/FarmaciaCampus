@@ -16,6 +16,20 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
     public override async Task<IEnumerable<Proveedor>> GetAllAsync()
     {
         return await _context.Set<Proveedor>()
-        .Include(e => e.Medicamentos).ToListAsync();
+        .Include(e => e.Medicamentos).ToListAsync(); 
+    }
+
+    public override async Task<IEnumerable<Medicamento>> GetMedisXProvee()
+    {
+        var medicamentosXProveedor = await _context.Medicamentos.Where(m => m.FechaExpiracion < fechaLimite).ToListAsync();
+        return medicamentosXProveedor;
+
+        foreach(var proveedor in Proveedores)
+        {
+            foreach(var medicamento in proveedor.Medicamentos)
+            {
+
+            }
+        }
     }
 }
