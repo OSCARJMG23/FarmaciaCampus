@@ -37,6 +37,17 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<MedicamentosDto>(medicamentos);
     }
 
+    [HttpGet("GetStock50")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetStock50()
+    {
+    var medicamento = await unitofwork.Medicamentos.GetStockCincu();
+    return mapper.Map<List<MedicamentoDto>>(medicamento);
+
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
