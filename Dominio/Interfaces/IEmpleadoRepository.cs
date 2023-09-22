@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dominio.Entities;
 
-namespace Dominio.Interfaces
+namespace Dominio.Interfaces;
+
+public interface IEmpleadoRepository : IGenericRepository<Empleado>
 {
-    public interface IEmpleadoRepository : IGenericRepository<Empleado>
-    {
-        
-    }
+    Task<Empleado> GetByUsernameAsync(string nombre);
+    Task<Empleado> GetByRefreshTokenAsync(string nombre);
 }

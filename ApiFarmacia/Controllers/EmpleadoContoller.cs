@@ -3,11 +3,13 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using ApiFarmacia.Services;
 
 namespace ApiFarmacia.Controllers;
 
 public class DepartamentoController : BaseApiController
 {
+    private readonly IEmpleadoService _empleadoService;
     private IUnitOfWork unitofwork;
     private readonly IMapper mapper;
 
@@ -84,6 +86,34 @@ public class DepartamentoController : BaseApiController
         unitofwork.Empleados.Remove(empleado);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpPost("token")] 
+    public async Task<IActionResult> GetTokenAsync(LoginDto model)
+    {
+        var result = await _empleadoService.GetTokenAsync(model);
+        SetRefreshTokenInCookie(result.RefreshToken);
+        return Ok(result);
+    }
+
+    [HttpPost("refresh-token")]
+    public async Task<IActionResult> RefreshToken()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        var response = await _empleadoService.RefreshTokenAsync(refreshToken);
+        if (!string.IsNullOrEmpty(response.RefreshToken))
+            SetRefreshTokenInCookie(response.RefreshToken);
+        return Ok(response);
+    }
+
+    private void SetRefreshTokenInCookie(string refreshToken)
+    {
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Expires = DateTime.UtcNow.AddDays(10),
+        };
+        Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
     }
 
     private ActionResult Notfound()

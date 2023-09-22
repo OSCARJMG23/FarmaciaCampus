@@ -25,6 +25,7 @@ public class ApiFarmaciaContext : DbContext
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<RecetaMedica> Recetas { get; set; }
     public DbSet<TipoMovimientoInventario> TiposMovimientos { get; set; }
+    public DbSet<Rol> Rols { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

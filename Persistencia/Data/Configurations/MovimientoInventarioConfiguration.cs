@@ -14,9 +14,13 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
         .IsRequired()
         .HasColumnType("int");
 
+        builder.Property(m => m.Cantidad)
+        .IsRequired()
+        .HasMaxLength(50);
+
         builder.Property(m => m.Precio)
         .IsRequired()
-        .HasColumnType("int");
+        .HasMaxLength(50);
 
         builder.Property(m => m.FechaMovimiento)
         .IsRequired();
