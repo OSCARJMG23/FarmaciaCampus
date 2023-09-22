@@ -45,7 +45,6 @@ public class MedicamentoController : BaseApiController
     {
     var medicamento = await unitofwork.Medicamentos.GetStockCincu();
     return mapper.Map<List<MedicamentoDto>>(medicamento);
-
     }
 
     [HttpPost]

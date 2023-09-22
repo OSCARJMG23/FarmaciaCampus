@@ -38,6 +38,16 @@ public class ProveedorController : BaseApiController
         return mapper.Map<ProveedoresDto>(proveedores);
     }
 
+    [HttpGet("proveedorMedica")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<ProveedoresDto>>> Get3()
+    {
+        var proveedor = await unitofwork.Proveedores.GetAllAsync();
+        return mapper.Map<List<ProveedoresDto>>(proveedor);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
