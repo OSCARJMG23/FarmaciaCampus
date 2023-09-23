@@ -20,33 +20,21 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         return medicamentosMenorCincu; 
     }
 
-    public async Task<IEnumerable<Medicamento>> GetCompraProvA()
-    {
-        Proveedor proveedor = proveedor =
-        var medicamentoCompraA = await _context.Medicamentos.Where(m =>m.) 
-    }
-
     public async Task<IEnumerable<Medicamento>> Get2024Expiracion()
     {   
         DateTime fechaLimite = new DateTime(2023, 12, 31);
-        var medicamentosSinCaducar = await _context.Medicamentos.Where(m => m.FechaExpiracion < fechaLimite).ToListAsync();
+        var medicamentosSinCaducar = await _context.Medicamentos.Where(m => m.FechaExpiracion <= fechaLimite).ToListAsync();
         return medicamentosSinCaducar;
     }
 
-    public async Task<IEnumerable<Medicamento>> GetParacetamol()
-    {   
-        var paracetamol = await _context.Medicamentos.Where(m => m.Nombre == "paracetamol").ToListAsync();
-        return paracetamol;
-    }
-
-    public async Task<string> CantidadVentasParacetamol()
+    public async Task<int> TotalVenParace()
     {
-        string medicamento = "Paracetamol";
-        int cantidadTotalVentas = await _context.Medicamentos
-            .Where(mv => mv..NombreMedicamento.ToLower() == medicamento.ToLower())
-            .SumAsync(mv => mv.CantidadVendida);
+        var unidadesVendidas = await _context.MovimientosInventarios
+            .Where(movimiento => movimiento.IdTipoMovimientoFk == 2)
+            .Where(movimiento => movimiento.Inventario.Medicamentos.Any(medicamento => medicamento.Nombre == "Paracetamol"))
+            .SumAsync(movimiento => movimiento.Cantidad);
 
-        return "La cantidad total de veces que se ha vendido " + medicamento + " es: " + cantidadTotalVentas;
+        return unidadesVendidas;
     }
 
     public async Task<IEnumerable<Medicamento>> Get2024DespuExpiracion()
@@ -61,5 +49,11 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         DateTime fechaLimite = new DateTime(2023, 3, 1);
         var medicamentosMarzo = await _context.Medicamentos.Where(m => m.FechaExpiracion < fechaLimite).ToListAsync();
         return medicamentosMarzo;
+    }
+
+    public async Task<Medicamento> GetMasCaro()
+    {   
+        var medicamentoMasCaro =  await _context.Medicamentos.OrderByDescending(m => m.Precio).FirstOrDefaultAsync();
+        return medicamentoMasCaro;
     }
 }

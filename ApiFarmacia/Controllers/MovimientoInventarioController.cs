@@ -37,6 +37,36 @@ public class MovimientoInventarioController : BaseApiController
         return mapper.Map<MovimientoInventario>(movimientosInventarios);
     }
 
+    [HttpGet("GetTotalMedisVendi")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<Medicamento>> GetTotalMediVendi()
+    {
+        var medisVendiTotal = await unitofwork.MovimientosInventarios.GetTotalMedisVenXProve();
+        return mapper.Map<Medicamento>(medisVendiTotal);
+    }
+
+    [HttpGet("GetTotalRecaudado")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<decimal> GetTotalRecaudado()
+    {
+        var medisVendiTotal = await unitofwork.MovimientosInventarios.GetTotalDineroVentMedi();
+        return medisVendiTotal;
+    }
+    
+    [HttpGet("GetMediNoVendidos")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public List<Medicamento> GetMediNoVendidos()
+    {
+        var medisVendiTotal = unitofwork.MovimientosInventarios.GetMedicamentosNoVendidos();
+        return medisVendiTotal;
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

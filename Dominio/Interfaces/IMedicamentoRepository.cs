@@ -6,7 +6,8 @@ public interface IMedicamentoRepository : IGenericRepository<Medicamento>
 {
     Task<IEnumerable<Inventario>> GetStockCincu(); 
     Task<IEnumerable<Medicamento>> Get2024Expiracion(); 
-    Task<IEnumerable<Medicamento>> GetParacetamol();  
+    Task<int> TotalVenParace();  
     Task<IEnumerable<Medicamento>> Get2024DespuExpiracion();
-    Task<IEnumerable<Medicamento>> GetMarzo(); 
+    Task<IEnumerable<Medicamento>> GetMarzo();  
+    Task<Medicamento> GetMasCaro();  
 }

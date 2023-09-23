@@ -4,5 +4,5 @@ namespace Dominio.Interfaces;
 
 public interface IProveedorRepository : IGenericRepository<Proveedor>
 {
-    
+    Task<IEnumerable<Proveedor>> GetMedicamentosPorProveedor(); 
 }

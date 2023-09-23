@@ -13,17 +13,4 @@ public class PacienteRepository : GenericRepository<Paciente>, IPacienteReposito
     {
         _context = context;
     }
-
-    public async Task<IEnumerable<Paciente>> GetPacientesParacetamol()
-    {
-
-        string medicamento = "Paracetamol";
-        var pacientesParacetamol = await _context.t
-            .Where(mv => mv.Medicamento.NombreMedicamento.ToLower() == medicamento.ToLower())
-            .Select(mv => mv.FacturaVenta.Cliente)
-            .Distinct()
-            .ToListAsync();
-
-        return pacientesParacetamol;
-    }
 }

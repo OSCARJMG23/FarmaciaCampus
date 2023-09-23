@@ -13,23 +13,26 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
         _context = context;
     }
 
-    public override async Task<IEnumerable<Proveedor>> GetAllAsync()
-    {
-        return await _context.Set<Proveedor>()
-        .Include(e => e.Medicamentos).ToListAsync(); 
+     public async Task<IEnumerable<Proveedor>> GetMedicamentosPorProveedor()
+     {
+        var medicamentosPorProvee = await _context.Proveedores
+            .Include(p => p.Medicamentos)
+            .ToListAsync();
+
+        return medicamentosPorProvee;
     }
 
-    public override async Task<IEnumerable<Medicamento>> GetMedisXProvee()
-    {
-        var medicamentosXProveedor = await _context.Medicamentos.Where(m => m.FechaExpiracion < fechaLimite).ToListAsync();
-        return medicamentosXProveedor;
+    // public async Task<IEnumerable<Medicamento>> GetMedicamentosProveedorA()
+    // {
+    //     var proveedorA = "ProveedorA";
 
-        foreach(var proveedor in Proveedores)
-        {
-            foreach(var medicamento in proveedor.Medicamentos)
-            {
+    //     var medicamentosProveedorA = await _context.MovimientosInventarios
+    //         .Where(m => m.IdTipoMovimientoFk == 1)
+    //         .Where(m => m.Proveedor.Nombre == proveedorA)
+    //         .SelectMany(m => m.Inventario.Medicamentos).ToListAsync();
 
-            }
-        }
-    }
+    //     return medicamentosProveedorA;
+    // }
+
+    
 }

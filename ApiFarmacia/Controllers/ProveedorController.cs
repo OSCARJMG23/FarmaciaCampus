@@ -38,14 +38,24 @@ public class ProveedorController : BaseApiController
         return mapper.Map<ProveedoresDto>(proveedores);
     }
 
+    [HttpGet("GetMedisXProve")] 
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<ProveedoresDto>>> GetMedisXProve()
+    {
+        var proveedor = await unitofwork.Proveedores.GetMedicamentosPorProveedor();
+        return mapper.Map<List<ProveedoresDto>>(proveedor);
+    }
+
     [HttpGet("proveedorMedica")] 
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<ProveedoresDto>>> Get3()
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetMediProveA()
     {
-        var proveedor = await unitofwork.Proveedores.GetAllAsync();
-        return mapper.Map<List<ProveedoresDto>>(proveedor);
+        var medicamentos = await unitofwork.MovimientosInventarios.GetMedicamentosProveedorA();
+        return mapper.Map<List<MedicamentoDto>>(medicamentos);
     }
 
     [HttpPost]

@@ -57,14 +57,14 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<List<MedicamentoDto>>(medicamento);
     }
     
-    [HttpGet("GetParacetamol")]
+    [HttpGet("GetTotalParace")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetParacetamol()
+    public async Task<int> GetTotalParace()
     {
-        var medicamento = await unitofwork.Medicamentos.GetParacetamol();
-        return mapper.Map<List<MedicamentoDto>>(medicamento);
+        var cantiParaceta = await unitofwork.Medicamentos.TotalVenParace();
+        return cantiParaceta;
     }
 
     [HttpGet("Get2024Expi")]
@@ -85,6 +85,16 @@ public class MedicamentoController : BaseApiController
     {
         var medicamento = await unitofwork.Medicamentos.GetMarzo();
         return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+    
+    [HttpGet("GetMediCaro")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<Medicamento> GetMediCaro()
+    {
+        var medicamento = await unitofwork.Medicamentos.GetMasCaro();
+        return medicamento;
     }
 
     [HttpPost]
