@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dominio.Entities;
 
-namespace Dominio.Interfaces
+namespace Dominio.Interfaces;
+
+public interface IRecetaRepository : IGenericRepository<RecetaMedica>
 {
-    public interface IRecetaRepository : IGenericRepository<RecetaMedica>
-    {
-        
-    }
+    Task<IEnumerable<RecetaMedica>> Get2023Recetas(); 
 }

@@ -39,6 +39,16 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         return paracetamol;
     }
 
+    public async Task<string> CantidadVentasParacetamol()
+    {
+        string medicamento = "Paracetamol";
+        int cantidadTotalVentas = await _context.Medicamentos
+            .Where(mv => mv..NombreMedicamento.ToLower() == medicamento.ToLower())
+            .SumAsync(mv => mv.CantidadVendida);
+
+        return "La cantidad total de veces que se ha vendido " + medicamento + " es: " + cantidadTotalVentas;
+    }
+
     public async Task<IEnumerable<Medicamento>> Get2024DespuExpiracion()
     {   
         DateTime fechaLimite = new DateTime(2024, 1, 1);

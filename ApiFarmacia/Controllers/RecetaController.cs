@@ -37,6 +37,16 @@ public class RecetaController : BaseApiController
         return mapper.Map<RecetaMedica>(recetas);
     }
 
+    [HttpGet("GetRecetas2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<RecetaMedica>>> GetRecetas2023()
+    {
+        var receta = await unitofwork.Recetas.Get2023Recetas();
+        return mapper.Map<List<RecetaMedica>>(receta);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

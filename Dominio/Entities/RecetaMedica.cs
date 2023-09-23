@@ -9,6 +9,7 @@ namespace Dominio.Entities
     {
         public string MedicoRemitente { get; set; }
         public string Descripcion { get; set; }
+        public DateTime Fecha { get; set; }
         public int IdPacienteFk { get; set; }
         public Paciente Paciente { get; set; }
     }

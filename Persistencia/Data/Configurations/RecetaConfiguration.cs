@@ -18,6 +18,9 @@ public class RecetaConfiguration : IEntityTypeConfiguration<RecetaMedica>
         .IsRequired()
         .HasColumnType("int");
 
+        builder.Property(r => r.Fecha)
+        .IsRequired();
+
         builder.HasOne(p => p.Paciente)
         .WithMany(p => p.Recetas)
         .HasForeignKey(p => p.IdPacienteFk);
