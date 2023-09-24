@@ -7,6 +7,7 @@ public interface IMovimientoInventarioRepository : IGenericRepository<Movimiento
     Task<IEnumerable<Medicamento>> GetMedicamentosProveedorA();
     Task<IEnumerable<Medicamento>> GetTotalMedisVenXProve(); 
     Task<decimal> GetTotalDineroVentMedi();
-    List<Medicamento> GetMedicamentosNoVendidos(List<Medicamento> medicamentos, List<MovimientoInventario> movimientosInventario);
-
+    List<Medicamento> GetMedicamentosNoVendidos();
+    IQueryable<Paciente> GetPacientesCompraParacetamol();
+    double GetPromMedisComprXPacXVen();
 }

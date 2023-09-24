@@ -1,5 +1,6 @@
 using Dominio.Entities;
 using Dominio.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
@@ -21,6 +22,27 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
 
         return medicamentosPorProvee;
     }
+
+    public async Task<ActionResult<IEnumerable<Proveedor>>> GetGananciaXProvee()
+    {
+        DateTime fechaInicio = new DateTime(2023, 1, 1);
+        DateTime fechaFin = new DateTime(2023, 12, 31);
+
+        var gananciaXProvee = await _context.Proveedores
+            .Select(p => new
+            {
+                Proveedor = p,
+                Ganancia = _context.MovimientosInventarios
+                    .Where(m => m.FechaMovimiento >= fechaInicio && m.FechaMovimiento <= fechaFin
+                                && m.IdTipoMovimientoFk == 2
+                                && m.Medicamento.IdProveedorFk == p.Id)
+                    .Sum(m => m.Precio * m.Cantidad)
+            }).ToListAsync();
+
+        return gananciaXProvee;
+    }
+
+
 
     // public async Task<IEnumerable<Medicamento>> GetMedicamentosProveedorA()
     // {

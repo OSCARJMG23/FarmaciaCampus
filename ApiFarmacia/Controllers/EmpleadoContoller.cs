@@ -39,6 +39,16 @@ public class EmpleadoController : BaseApiController
         return mapper.Map<EmpleadosDto>(empleados);
     }
 
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IEnumerable<int>> GetCantVent()
+    {
+        var cantVentas = await unitofwork.Empleados.GetCantVentXEmple2023();
+        return cantVentas;
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

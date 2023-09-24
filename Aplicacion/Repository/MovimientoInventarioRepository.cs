@@ -59,29 +59,54 @@ public class MovimientoInventarioRepository : GenericRepository<MovimientoInvent
         return totalVentas;
     }
 
-    public List<Medicamento> GetMedicamentosNoVendidos(List<Medicamento> medicamentos, List<MovimientoInventario> movimientosInventario)
+    public List<Medicamento> GetMedicamentosNoVendidos()
     {
-        var medicamentosVendidosIds = movimientosInventario
+        var medicamentosVendidosIds = _context.MovimientosInventarios
             .Where(m => m.IdTipoMovimientoFk == 2)
             .Select(m => m.IdInventarioFk);
 
-        var medicamentosNoVendidos = medicamentos
+        var medicamentosNoVendidos = _context.Medicamentos
             .Where(m => !medicamentosVendidosIds.Contains(m.IdInventarioFk)).ToList();
 
         return medicamentosNoVendidos;
     }
 
-    public async Task<IEnumerable<Paciente>> GetPacientesParacetamol()
-{
-    string medicamentoNombre = "Paracetamol";
+    public IQueryable<Paciente> GetPacientesCompraParacetamol()
+    {
+        var pacientesCompraParacetamol = from movimiento in _context.MovimientosInventarios
+                                            where movimiento.IdTipoMovimientoFk == 1
+                                            join inventario in _context.Inventarios on movimiento.IdInventarioFk equals inventario.Id
+                                            join medicamento in _context.Medicamentos on inventario.Id equals medicamento.IdInventarioFk
+                                            where medicamento.Nombre == "Paracetamol"
+                                            select movimiento.Paciente;
 
-    var pacientesParacetamol = await _context.MovimientosInventarios
-        .Where(mv => mv.IdTipoMovimientoFk == 1) 
-        .Where(mv => mv.Medicamentos.Any(m => m.Nombre == medicamentoNombre)) 
-        .Select(mv => mv.Factura.Paciente) 
-        .Distinct()
-        .ToListAsync();
+        return pacientesCompraParacetamol;
+    }
 
-    return pacientesParacetamol;
-}
+    public async Task<IEnumerable<Medicamento>> GetMediMenosVendido()
+    {
+        var medicamentosVendidosIds = _context.MovimientosInventarios
+            .Where(m => m.IdTipoMovimientoFk == 2)
+            .Select(m => m.IdInventarioFk);
+
+        var medicamentosNoVendidos = _context.Medicamentos
+            .Where(m => !medicamentosVendidosIds.Contains(m.IdInventarioFk)).ToList();
+
+        return medicamentosNoVendidos;
+    }
+
+    public double GetPromMedisComprXPacXVen()
+    {
+        var promedio = _context.MovimientosInventarios
+            .Where(m => m.IdTipoMovimientoFk == 1)
+            .GroupBy(m => m.IdPacienteFk) 
+            .Select(group => new
+            {
+                PacienteId = group.Key,
+                Promedio = group.Average(m => m.Cantidad) 
+            })
+            .Select(p => p.Promedio).Average();
+
+        return promedio;
+    }
 }

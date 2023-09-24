@@ -44,11 +44,32 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         return medicamentosExp2024;
     }    
 
-    public async Task<IEnumerable<Medicamento>> GetMarzo()
-    {   
-        DateTime fechaLimite = new DateTime(2023, 3, 1);
-        var medicamentosMarzo = await _context.Medicamentos.Where(m => m.FechaExpiracion < fechaLimite).ToListAsync();
-        return medicamentosMarzo;
+    public async Task<int> GetTotalMedicVendidosMarzo()
+    {
+        DateTime fechaInicio = new DateTime(2023, 3, 1);
+        DateTime fechaFin = new DateTime(2023, 3, 31);
+
+        var totalMedicamentosVendidos = await _context.MovimientosInventarios
+            .Where(movimiento => movimiento.IdTipoMovimientoFk == 2 &&
+                                movimiento.FechaMovimiento >= fechaInicio &&
+                                movimiento.FechaMovimiento <= fechaFin)
+            .SumAsync(movimiento => movimiento.Cantidad);
+
+        return totalMedicamentosVendidos;
+    }
+
+    public async Task<Medicamento> GetMediMenosVen2023()
+    {
+        var fechaInicio = new DateTime(2023, 1, 1);
+        var fechaFin = new DateTime(2023, 12, 31);
+
+        var medicamentoMenosVendido = await _context.MovimientosInventarios
+            .Where(m => m.IdTipoMovimientoFk == 2 && m.FechaMovimiento >= fechaInicio && m.FechaMovimiento <= fechaFin)
+            .GroupBy(m => m.IdInventarioFk)
+            .OrderBy(g => g.Sum(m => m.Cantidad))
+            .Select(g => g.FirstOrDefault().Inventario.Medicamentos).FirstOrDefaultAsync();
+
+        return medicamentoMenosVendido.FirstOrDefault();
     }
 
     public async Task<Medicamento> GetMasCaro()

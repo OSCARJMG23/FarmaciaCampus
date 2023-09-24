@@ -53,8 +53,8 @@ public class MovimientoInventarioController : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<decimal> GetTotalRecaudado()
     {
-        var medisVendiTotal = await unitofwork.MovimientosInventarios.GetTotalDineroVentMedi();
-        return medisVendiTotal;
+        var totalReacaudadoo = await unitofwork.MovimientosInventarios.GetTotalDineroVentMedi();
+        return totalReacaudadoo;
     }
     
     [HttpGet("GetMediNoVendidos")]
@@ -63,8 +63,28 @@ public class MovimientoInventarioController : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public List<Medicamento> GetMediNoVendidos()
     {
-        var medisVendiTotal = unitofwork.MovimientosInventarios.GetMedicamentosNoVendidos();
-        return medisVendiTotal;
+        var medisNovendi = unitofwork.MovimientosInventarios.GetMedicamentosNoVendidos();
+        return medisNovendi;
+    }
+
+    [HttpGet("GetPacienComParace")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IQueryable<Paciente> GetPacienComParace()
+    {
+        var pacientesParace = unitofwork.MovimientosInventarios.GetPacientesCompraParacetamol();
+        return pacientesParace;
+    }
+
+    [HttpGet("GetPromMedis")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public double GetPromMedis()
+    {
+        var promedioMedis = unitofwork.MovimientosInventarios.GetPromMedisComprXPacXVen();
+        return promedioMedis;
     }
 
     [HttpPost]
