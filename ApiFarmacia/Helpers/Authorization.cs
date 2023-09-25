@@ -8,5 +8,5 @@ public class Authorization
         Empleado
     }
 
-    public const Roles rol_default = Roles.Administrador;
+    public const Roles rol_default = Roles.Empleado;
 }
