@@ -18,4 +18,15 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
         return await _context.Set<Proveedor>()
         .Include(e => e.Medicamentos).ToListAsync();
     }
+
+    public async Task<Proveedor> ProveedorMasSuministros2023()
+    {
+        var Proveedor = await _context.Proveedores
+            .OrderByDescending(p=>p.Medicamentos
+                .SelectMany(h=>h.Inventario.MovimientosInventario)
+                .Where(ti=>ti.IdTipoMovimientoFk == 1 && ti.FechaMovimiento.Year ==2023)
+                .Sum(ti=>ti.Cantidad))
+            .FirstOrDefaultAsync();
+        return Proveedor;
+    }
 }
