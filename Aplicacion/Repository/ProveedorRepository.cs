@@ -23,7 +23,7 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
         return medicamentosPorProvee;
     }
 
-    public async Task<ActionResult<IEnumerable<Proveedor>>> GetGananciaXProvee()
+    public async Task<ActionResult<IEnumerable<dynamic>>> GetGananciaXProvee()
     {
         DateTime fechaInicio = new DateTime(2023, 1, 1);
         DateTime fechaFin = new DateTime(2023, 12, 31);
@@ -31,18 +31,19 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
         var gananciaXProvee = await _context.Proveedores
             .Select(p => new
             {
-                Proveedor = p,
+                Proveedor = p.Nombre,
                 Ganancia = _context.MovimientosInventarios
                     .Where(m => m.FechaMovimiento >= fechaInicio && m.FechaMovimiento <= fechaFin
                                 && m.IdTipoMovimientoFk == 2
-                                && m.Medicamento.IdProveedorFk == p.Id)
-                    .Sum(m => m.Precio * m.Cantidad)
-            }).ToListAsync();
+                                && m.Inventario.Medicamentos.Any(med => med.IdProveedorFk == p.Id))
+                    .SelectMany(m => m.Inventario.Medicamentos) 
+                    .Where(med => med.IdProveedorFk == p.Id)
+                    .Sum(med => med.Precio) 
+            })
+            .ToListAsync();
 
-        return gananciaXProvee;
+        return gananciaXProvee.Select(p => new { p.Proveedor, p.Ganancia }).ToList();
     }
-
-
 
     // public async Task<IEnumerable<Medicamento>> GetMedicamentosProveedorA()
     // {

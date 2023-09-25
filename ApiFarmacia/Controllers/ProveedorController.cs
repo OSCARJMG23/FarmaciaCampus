@@ -3,6 +3,7 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Aplicacion.Repository;
 
 namespace ApiFarmacia.Controllers;
 
@@ -56,6 +57,25 @@ public class ProveedorController : BaseApiController
     {
         var medicamentos = await unitofwork.MovimientosInventarios.GetMedicamentosProveedorA();
         return mapper.Map<List<MedicamentoDto>>(medicamentos);
+    }
+
+    [HttpGet("GetProveeNoVenMedis")] 
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<ProveedorDto>>> GetProveNoVentas()
+    {
+        var proveedoresNoVenta = await unitofwork.MovimientosInventarios.GetProveNoVenMedis();
+        return mapper.Map<List<ProveedorDto>>(proveedoresNoVenta);
+    }
+
+    [HttpGet("GetGananTotalProvee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<dynamic>>> GetGananTotalProvee()
+    {
+        var gananciaTotal = await unitofwork.Proveedores.GetGananciaXProvee();
+        return gananciaTotal;
     }
 
     [HttpPost]
