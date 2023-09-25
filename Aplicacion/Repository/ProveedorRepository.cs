@@ -29,4 +29,14 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
             .FirstOrDefaultAsync();
         return Proveedor;
     }
+
+    public async Task<IEnumerable<Proveedor>> ProvedorMedicamentosMenos50Stock()
+    {
+        var medicamentos = await _context.Medicamentos
+        .Where(e=> e.Inventario.Stock < 50)
+        .Select(e=>e.IdProveedorFk)
+        .ToListAsync();
+        
+        
+    }
 }
