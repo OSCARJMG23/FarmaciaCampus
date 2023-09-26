@@ -39,7 +39,7 @@ public class EmpleadoController : BaseApiController
         return mapper.Map<EmpleadosDto>(empleados);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("CantVentaEmple")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
