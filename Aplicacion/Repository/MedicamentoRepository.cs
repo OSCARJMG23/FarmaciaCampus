@@ -1,3 +1,5 @@
+using System.util.zlib;
+using System.Xml.Schema;
 using Dominio.Entities;
 using Dominio.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -31,5 +33,49 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         .ToListAsync();
 
         return totalXmes;
+    }
+
+    public async Task<IEnumerable<Medicamento>> MedicamentosVendidosXmes()
+    {
+        var Medicamentos = await _context.Medicamentos
+        .Where(e => e.Inventario.MovimientosInventario
+            .Where(mi => mi.IdTipoMovimientoFk == 2 && mi.FechaMovimiento.Year == 2023)
+            .GroupBy(mi=> mi.FechaMovimiento.Month )
+            .All(group=>group.Any())
+        ).ToListAsync();
+
+        return Medicamentos;
+    }
+    public async Task<IEnumerable<Medicamento>> MedicamentosSinVenta2023()
+    {
+        var Medicamentos = await _context.Medicamentos
+        .Where(f=> !f.Inventario.MovimientosInventario
+            .Any(t=>t.IdTipoMovimientoFk ==2 && t.FechaMovimiento.Year == 2023))
+            .ToListAsync();
+            
+        return Medicamentos;
+    }
+    public async Task<int> TotalMedicamentosVendidosTrimestre2023()
+    {
+        var primerTrimestreInicio = new DateTime(2023, 1, 1);
+        var primerTrimestreFin = new DateTime(2023, 3, 31);
+
+        var Medicamentos = await _context.Medicamentos
+        .Where(e=>e.Inventario.MovimientosInventario
+        .Any(t  =>  t.IdTipoMovimientoFk==2 &&
+                    t.FechaMovimiento >= primerTrimestreInicio &&
+                    t.FechaMovimiento <= primerTrimestreFin))
+        .CountAsync();
+
+        return Medicamentos;
+    }
+
+    public async Task<IEnumerable<Medicamento>> MedicamentosPrecioMas50Stockmenos100()
+    {
+        var Medicamentos = await _context.Medicamentos
+        .Where(e=>e.Precio >= 50 && e.Inventario.Stock <=100)
+        .ToListAsync();
+
+        return Medicamentos;
     }
 }

@@ -32,11 +32,41 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
 
     public async Task<IEnumerable<Proveedor>> ProvedorMedicamentosMenos50Stock()
     {
-        var medicamentos = await _context.Medicamentos
+        var medicamentosMenos50Stock = await _context.Medicamentos
         .Where(e=> e.Inventario.Stock < 50)
-        .Select(e=>e.IdProveedorFk)
         .ToListAsync();
         
-        
+        var idProveedores = medicamentosMenos50Stock
+        .Select(m=>m.IdProveedorFk)
+        .Distinct()
+        .ToList();
+
+        var proveedores = await _context.Proveedores
+        .Where(t=> idProveedores.Contains(t.Id))
+        .ToListAsync();
+
+        return proveedores;
+    }
+    public async Task<IEnumerable<Proveedor>> ProvedorSuministro5MedicamentosDiferentes2023()
+    {
+        var proveedoresConMedicamentos2023 = await _context.Medicamentos
+        .Where(m => m.Inventario.MovimientosInventario
+            .Any(mi => mi.IdTipoMovimientoFk == 1 && mi.FechaMovimiento.Year == 2023))
+        .Select(m => new
+        {
+            ProveedorId = m.IdProveedorFk,
+            MedicamentoId = m.Id
+        })
+        .Distinct()
+        .GroupBy(m => m.ProveedorId)
+        .Where(group => group.Count() >= 5)
+        .Select(group => group.Key)
+        .ToListAsync();
+
+        var proveedores = await _context.Proveedores
+            .Where(p => proveedoresConMedicamentos2023.Contains(p.Id))
+            .ToListAsync();
+
+        return proveedores;
     }
 }
