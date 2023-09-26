@@ -30,6 +30,17 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
         return Proveedor;
     }
 
+    public async Task<int>TotalProveedoresSuministro2023()
+    {
+        var TotalProveedores = await _context.Medicamentos
+        .Where(e=>e.Inventario.MovimientosInventario
+            .Any(t=>t.IdTipoMovimientoFk ==1 && t.FechaMovimiento.Year == 2023))
+        .Select(e => e.IdProveedorFk)
+        .Distinct()
+        .CountAsync();
+        
+        return TotalProveedores;
+    }
     public async Task<IEnumerable<Proveedor>> ProvedorMedicamentosMenos50Stock()
     {
         var medicamentosMenos50Stock = await _context.Medicamentos

@@ -39,6 +39,56 @@ public class EmpleadoController : BaseApiController
         return mapper.Map<EmpleadosDto>(empleados);
     }
 
+    [HttpGet("/mas-5-ventas")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadoMas5Ventas(int id)
+    {
+        var empleados5ventas = await unitofwork.Empleados.EmpleadoMas5Ventas();
+        return  mapper.Map<List<EmpleadosDto>>(empleados5ventas);
+    }
+
+    [HttpGet("/sin-ventas-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadoSinVentas2023()
+    {
+        var empleadosSinventas2023 = await unitofwork.Empleados.EmpleadosNingunaVenta2023();
+        return  mapper.Map<List<EmpleadosDto>>(empleadosSinventas2023);
+    }
+
+    [HttpGet("/menos-5-ventas-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadosMenos5Ventas2023()
+    {
+        var empleadosSinventas2023 = await unitofwork.Empleados.EmpleadoMenos5Ventas();
+        return  mapper.Map<List<EmpleadosDto>>(empleadosSinventas2023);
+    }
+
+    [HttpGet("/venta/mayorcantidad-medicamentos-distintos")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<Empleado>> EmpleadoMayorCantidadVentaDistintosMedicamentos()
+    {
+        var empleado = await unitofwork.Empleados.EmpleadoMayorCantidadVentaDiferenteMedicamento2023();
+        return  empleado;
+    }
+
+    [HttpGet("/sin-ventas-abril-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadoSinVentasAbril2023()
+    {
+        var empleadosSinventasAbril2023 = await unitofwork.Empleados.EmpleadoSinVentaAbril();
+        return  mapper.Map<List<EmpleadosDto>>(empleadosSinventasAbril2023);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

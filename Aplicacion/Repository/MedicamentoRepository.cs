@@ -21,6 +21,19 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         var medicamentosMenorCincu = await _context.Inventarios.Where(m => m.Stock < 50).ToListAsync();
         return medicamentosMenorCincu;
     }
+    public async Task<IEnumerable<Medicamento>> MedicamentosNuncaVendidos()
+    {
+        var MedicamentosVendidos = await _context.Medicamentos
+        .Where(tn=> tn.Inventario.MovimientosInventario
+        .Any(pm => pm.IdTipoMovimientoFk ==2))
+        .ToListAsync();
+
+        var MedicamentosNuncaVendidos = await _context.Medicamentos
+        .Where(tn=> !MedicamentosVendidos.Contains(tn))
+        .ToListAsync();
+
+        return MedicamentosNuncaVendidos;
+    }
     public async Task<IEnumerable<KeyValuePair<string, int>>> TotalMedicamentosVendidosXmes2023()
     {
         var totalXmes = await _context.MovimientosInventarios

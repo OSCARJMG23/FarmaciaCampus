@@ -14,6 +14,46 @@ public class PacienteRepository : GenericRepository<Paciente>, IPacienteReposito
         _context = context;
     }
 
+    public async Task<Paciente> PacienteGastadoMasDinero2023()
+    {
+        var movimientos2023 = await _context.MovimientosInventarios
+        .Where(n => n.FechaMovimiento.Year == 2023 && n.IdTipoMovimientoFk == 2)
+        .ToListAsync();
+
+        var gastoXpaciente = movimientos2023
+        .GroupBy(ti=>ti.IdPacienteFk)
+        .Select(group=> new
+        {
+            PacienteId = group.Key,
+            GastoTotal = group.Sum(ti=>ti.Precio*ti.Cantidad)
+        })
+        .ToList();
+
+        var pacienteMayorGasto = gastoXpaciente
+        .OrderByDescending(x => x.GastoTotal)
+        .FirstOrDefault();
+
+        if (pacienteMayorGasto != null)
+        {
+            var paciente = await _context.Pacientes
+            .FirstOrDefaultAsync(p=>p.Id==pacienteMayorGasto.PacienteId);
+
+            return paciente;
+        }
+        return null;
+    }
+
+    public async Task<IEnumerable<Paciente>> PacientesCompraronParacetamol2023()
+    {
+        var paciente = await _context.Pacientes
+        .Where(t=>t.MovimientosInventario
+        .Any(f => f.IdTipoMovimientoFk == 2 && 
+                f.FechaMovimiento.Year == 2023 && 
+                f.Inventario.Medicamentos.Any(p=>p.Nombre == "Paracetamol")))
+        .ToListAsync();
+
+        return paciente;
+    }
     public async Task<IEnumerable<Paciente>> PacienteSinCompra2023()
     {
         var Paciente = await _context.Pacientes
