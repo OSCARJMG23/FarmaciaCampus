@@ -1,21 +1,10 @@
-db.createCollection("Proveedores");
-db.Proveedores.insertMany(
-    [
-        {
-            "nombre": "ProveedorA",
-            "contacto": "contacto@proveedora.com",
-            "direccion": "Calle Proveedor 456",
-        },
-        {
-            "nombre": "ProveedorB",
-            "contacto": "contacto@proveedorb.com",
-            "direccion": "Calle Proveedor 789",
-        },
-        {
-            "nombre": "ProveedorC",
-            "contacto": "contacto@proveedorc.com",
-            "direccion": "Calle Proveedor 123",
-        }
-    ]
-);
-
+Nombre,Contacto,IdDireccionFk
+Farmacia Santa María,555-123-4567,1
+Distribuidora Médica S.A.,555-987-6543,2
+Laboratorios PharmaCorp,555-234-5678,3
+Droguería San Rafael,555-876-5432,4
+Proveedora de Suministros Médicos,555-345-6789,5
+Distribuidora Farmacéutica ABC,555-765-4321,6
+Farmacias del Sur,555-456-7890,7
+Suministros Hospitalarios XYZ,555-654-3210,8
+Droguería El Éxito,555-987-6543,9

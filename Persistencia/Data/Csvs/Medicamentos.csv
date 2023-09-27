@@ -1,105 +1,11 @@
-db.createCollection("Medicamentos");
-db.Medicamentos.insertMany(
-    [
-        {
-            "nombre": "Paracetamol",
-            "precio": 20,
-            "stock": 150,
-            "fechaExpiracion": ISODate("2024-06-15"),
-            "proveedor": {
-                "nombre": "ProveedorA",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Ibuprofeno",
-            "precio": 25,
-            "stock": 50,
-            "fechaExpiracion": ISODate("2024-12-01"),
-            "proveedor": {
-                "nombre": "ProveedorB",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Aspirina",
-            "precio": 15,
-            "stock": 30,
-            "fechaExpiracion": ISODate("2024-05-20"),
-            "proveedor": {
-                "nombre": "ProveedorC",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Amoxicilina",
-            "precio": 40,
-            "stock": 75,
-            "fechaExpiracion": ISODate("2025-08-11"),
-            "proveedor": {
-                "nombre": "ProveedorA",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Cetirizina",
-            "precio": 10,
-            "stock": 110,
-            "fechaExpiracion": ISODate("2024-01-23"),
-            "proveedor": {
-                "nombre": "ProveedorB",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Losartan",
-            "precio": 55,
-            "stock": 95,
-            "fechaExpiracion": ISODate("2024-07-30"),
-            "proveedor": {
-                "nombre": "ProveedorC",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Metformina",
-            "precio": 60,
-            "stock": 180,
-            "fechaExpiracion": ISODate("2024-09-29"),
-            "proveedor": {
-                "nombre": "ProveedorA",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Atorvastatina",
-            "precio": 45,
-            "stock": 200,
-            "fechaExpiracion": ISODate("2024-10-05"),
-            "proveedor": {
-                "nombre": "ProveedorB",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Clonazepam",
-            "precio": 35,
-            "stock": 25,
-            "fechaExpiracion": ISODate("2024-04-21"),
-            "proveedor": {
-                "nombre": "ProveedorC",
-                "contacto": "contacto@proveedora.com"
-            }
-        },
-        {
-            "nombre": "Loratadina",
-            "precio": 22,
-            "stock": 120,
-            "fechaExpiracion": ISODate("2025-02-19"),
-            "proveedor": {
-                "nombre": "ProveedorA",
-                "contacto": "contacto@proveedora.com"
-            }
-        }
-    ]
-);
+Nombre,Precio,FechaExpiracion,IdProveedorFk,IdPresentacionFk,IdMarcaFk,IdInventarioFk
+Aspirina,5,15/12/2023,1,1,1,1
+Ibuprofeno,8,20/02/2024,2,2,2,2
+Paracetamol,7,10/10/2023,3,3,3,3
+Amoxicilina,15,05/04/2024,4,1,4,4
+Omeprazol,10,25/07/2023,1,2,5,5
+Atorvastatina,12,30/09/2023,2,3,6,6
+Diclofenaco,6,18/11/2023,3,1,7,7
+Loratadina,9,15/01/2024,4,2,8,8
+Ranitidina,11,12/03/2024,1,3,9,9
+Losartán,14,10/05/2024,2,1,10,10
