@@ -47,7 +47,7 @@ public class EmpleadoService : IEmpleadoService
                 _unitOfWork.Empleados.Add(empleado);
                 await _unitOfWork.SaveAsync();
 
-                return $"Employed  {registerDto.Nombre} has been registered successfully";
+                return $"Empleado registrado correctamente  {registerDto.Nombre}";
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ public class EmpleadoService : IEmpleadoService
         }
         else
         {
-            return $"Employed {registerDto.Nombre} already registered.";
+            return $"Empleado ya existente {registerDto.Nombre}";
         }
     }
     public async Task<EmpleadosDto> GetTokenAsync(LoginDto model)
@@ -69,7 +69,7 @@ public class EmpleadoService : IEmpleadoService
         if (empleado == null)
         {
             empleadosDto.IsAuthenticated = false;
-            empleadosDto.Message = $"Employed does not exist with name {model.Nombre}.";
+            empleadosDto.Message = $"Empleado no existe {model.Nombre}";
             return empleadosDto;
         }
 
@@ -88,6 +88,7 @@ public class EmpleadoService : IEmpleadoService
             if (empleado.RefreshTokens.Any(a => a.IsActive))
             {
                 var activeRefreshToken = empleado.RefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                empleadosDto.Message = "Empleado existente";
                 empleadosDto.RefreshToken = activeRefreshToken.Token;
                 empleadosDto.RefreshTokenExpiration = activeRefreshToken.Expires;
             }
