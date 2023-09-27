@@ -37,6 +37,46 @@ public class PacienteController : BaseApiController
         return mapper.Map<PacientesDto>(pacientes);
     }
 
+    [HttpGet("/gastado-mas-dinero-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<Paciente>> PacienteGastadoMasDinero2023()
+    {
+        var paciente = await unitofwork.Pacientes.PacienteGastadoMasDinero2023();
+        return paciente;
+    }
+
+    [HttpGet("/compraron-paracetamol-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<PacientesDto>>> PacientesCompraronQueParacetamol2023()
+    {
+        var pacientes = await unitofwork.Pacientes.PacientesCompraronParacetamol2023();
+        return mapper.Map<List<PacientesDto>>(pacientes);
+    }
+
+    [HttpGet("/no-compraron-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<PacientesDto>>> PacientesNoCompraron2023()
+    {
+        var pacientes = await unitofwork.Pacientes.PacienteSinCompra2023();
+        return mapper.Map<List<PacientesDto>>(pacientes);
+    }
+
+    [HttpGet("/total-gastadoXpaciente-2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<PacientesDto>>> TotalGastadoXpaciente()
+    {
+        var pacientes = await unitofwork.Pacientes.TotalGastadoXpaciente2023();
+        return mapper.Map<List<PacientesDto>>(pacientes);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
