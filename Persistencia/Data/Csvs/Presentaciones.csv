@@ -1,11 +1,11 @@
-Nombre
-Tabletas
-Cápsulas
-Jarabe
-Crema
-Gotas
-Ampollas
-Supositorios
-Solución oral
-Suspensión
-Parches
+Id,Nombre
+1,Tabletas
+2,Cápsulas
+3,Jarabe
+4,Crema
+5,Gotas
+6,Ampollas
+7,Supositorios
+8,Solución oral
+9,Suspensión
+10,Parches

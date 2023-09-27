@@ -1,11 +1,11 @@
-Nombre
-Pfizer
-Novartis
-Bayer
-Roche
-Merck
-GlaxoSmithKline
-Sanofi
-Johnson & Johnson
-AstraZeneca
-Abbott
+Id,Nombre
+1,Pfizer
+2,Novartis
+3,Bayer
+4,Roche
+5,Merck
+6,GlaxoSmithKline
+7,Sanofi
+8,Johnson & Johnson
+9,AstraZeneca
+10,Abbott

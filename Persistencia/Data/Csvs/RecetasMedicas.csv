@@ -1,4 +1,4 @@
-MedicoRemitente,Descripcion,IdPacienteFk
-Dr. Ana Gómez,Receta para fiebre,1
-Dr. Carlos Pérez,Tratamiento para alergias,2
-Dra. Laura Rodríguez,Receta para dolor de cabeza,3
+Id,MedicoRemitente,Descripcion,IdPacienteFk
+1,Dr. Ana Gómez,Receta para fiebre,1
+2,Dr. Carlos Pérez,Tratamiento para alergias,2
+3,Dra. Laura Rodríguez,Receta para dolor de cabeza,3
