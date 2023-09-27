@@ -13,19 +13,11 @@ public class EmpleadoRepository : GenericRepository<Empleado>, IEmpleadoReposito
         _context = context;
     }
 
-    public async Task<Empleado> GetByRefreshTokenAsync(string refreshToken)
-    {
-        return await _context.Empleados
-            .Include(u => u.Rols)
-            .Include(u => u.RefreshTokens)
-            .FirstOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == refreshToken));
-    }
 
     public async Task<Empleado> GetByUsernameAsync(string nombre)
     {
         return await _context.Empleados
-            .Include(u => u.Rols)   
-            .Include(u => u.RefreshTokens)
+
             .FirstOrDefaultAsync(u => u.Nombre.ToLower() == nombre.ToLower());
     }
         public async Task<IEnumerable<Empleado>> EmpleadoMas5Ventas()

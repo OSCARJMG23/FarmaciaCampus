@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistencia.Data;
 
@@ -10,9 +11,11 @@ using Persistencia.Data;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(ApiFarmaciaContext))]
-    partial class ApiFarmaciaContextModelSnapshot : ModelSnapshot
+    [Migration("20230927192150_InitalCreate03")]
+    partial class InitalCreate03
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,12 +117,22 @@ namespace Persistencia.Data.Migrations
                     b.Property<DateTime>("FechaContratacion")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("IdRolFk")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("IdRolFk");
 
                     b.ToTable("empleado", (string)null);
                 });
@@ -401,18 +414,18 @@ namespace Persistencia.Data.Migrations
                     b.Property<DateTime>("Expires")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("IdEmpleadoFk")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Revoked")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Token")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("IdEmpleadoFk");
 
                     b.ToTable("RefreshToken", (string)null);
                 });
@@ -423,12 +436,17 @@ namespace Persistencia.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("EmpleadoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpleadoId");
 
                     b.ToTable("rol", (string)null);
                 });
@@ -447,52 +465,6 @@ namespace Persistencia.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tipoMovimiento", (string)null);
-                });
-
-            modelBuilder.Entity("Dominio.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar")
-                        .HasColumnName("email");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar")
-                        .HasColumnName("password");
-
-                    b.Property<string>("Username")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar")
-                        .HasColumnName("username");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("user", (string)null);
-                });
-
-            modelBuilder.Entity("Dominio.Entities.UserRol", b =>
-                {
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("UsuarioId", "RolId");
-
-                    b.HasIndex("RolId");
-
-                    b.ToTable("userRol", (string)null);
                 });
 
             modelBuilder.Entity("Dominio.Entities.Ciudad", b =>
@@ -526,6 +498,17 @@ namespace Persistencia.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Ciudad");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Empleado", b =>
+                {
+                    b.HasOne("Dominio.Entities.Rol", "Rol")
+                        .WithMany("Empleados")
+                        .HasForeignKey("IdRolFk")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rol");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Factura", b =>
@@ -652,32 +635,20 @@ namespace Persistencia.Data.Migrations
 
             modelBuilder.Entity("Dominio.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("Dominio.Entities.User", "User")
+                    b.HasOne("Dominio.Entities.Empleado", "Empleado")
                         .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("IdEmpleadoFk")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Empleado");
                 });
 
-            modelBuilder.Entity("Dominio.Entities.UserRol", b =>
+            modelBuilder.Entity("Dominio.Entities.Rol", b =>
                 {
-                    b.HasOne("Dominio.Entities.Rol", "Rol")
-                        .WithMany("UsersRols")
-                        .HasForeignKey("RolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dominio.Entities.User", "Usuario")
-                        .WithMany("UsersRols")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Rol");
-
-                    b.Navigation("Usuario");
+                    b.HasOne("Dominio.Entities.Empleado", null)
+                        .WithMany("Rols")
+                        .HasForeignKey("EmpleadoId");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Ciudad", b =>
@@ -700,6 +671,10 @@ namespace Persistencia.Data.Migrations
             modelBuilder.Entity("Dominio.Entities.Empleado", b =>
                 {
                     b.Navigation("MovimientosInventarios");
+
+                    b.Navigation("RefreshTokens");
+
+                    b.Navigation("Rols");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Factura", b =>
@@ -748,19 +723,12 @@ namespace Persistencia.Data.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Rol", b =>
                 {
-                    b.Navigation("UsersRols");
+                    b.Navigation("Empleados");
                 });
 
             modelBuilder.Entity("Dominio.Entities.TipoMovimientoInventario", b =>
                 {
                     b.Navigation("MovimientosInventario");
-                });
-
-            modelBuilder.Entity("Dominio.Entities.User", b =>
-                {
-                    b.Navigation("RefreshTokens");
-
-                    b.Navigation("UsersRols");
                 });
 #pragma warning restore 612, 618
         }

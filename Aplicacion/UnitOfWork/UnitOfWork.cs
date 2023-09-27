@@ -25,6 +25,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IRecetaRepository _recetas;
     private ITipoMovimientoRepository _tiposMovimientos;
     private IRolRepository _roles;
+    private IUserRepository _users;
 
     public UnitOfWork(ApiFarmaciaContext context)
     {
@@ -233,6 +234,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _roles = new RolRepository(_context);
             }
             return _roles;
+        }
+    }
+
+        public IUserRepository Users
+    {
+        get
+        {
+            if (_users == null)
+            {
+                _users = new UserRepository(_context);
+            }
+            return _users;
         }
     }
 

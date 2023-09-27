@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistencia.Data;
 
@@ -10,9 +11,11 @@ using Persistencia.Data;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(ApiFarmaciaContext))]
-    partial class ApiFarmaciaContextModelSnapshot : ModelSnapshot
+    [Migration("20230927211501_InitalCreate04")]
+    partial class InitalCreate04
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,12 +117,25 @@ namespace Persistencia.Data.Migrations
                     b.Property<DateTime>("FechaContratacion")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("IdRolFk")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("RolId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RolId");
 
                     b.ToTable("empleado", (string)null);
                 });
@@ -398,6 +414,9 @@ namespace Persistencia.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("EmpleadoId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Expires")
                         .HasColumnType("datetime(6)");
 
@@ -411,6 +430,8 @@ namespace Persistencia.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpleadoId");
 
                     b.HasIndex("UserId");
 
@@ -526,6 +547,15 @@ namespace Persistencia.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Ciudad");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Empleado", b =>
+                {
+                    b.HasOne("Dominio.Entities.Rol", "Rol")
+                        .WithMany()
+                        .HasForeignKey("RolId");
+
+                    b.Navigation("Rol");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Factura", b =>
@@ -652,6 +682,10 @@ namespace Persistencia.Data.Migrations
 
             modelBuilder.Entity("Dominio.Entities.RefreshToken", b =>
                 {
+                    b.HasOne("Dominio.Entities.Empleado", null)
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("EmpleadoId");
+
                     b.HasOne("Dominio.Entities.User", "User")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UserId")
@@ -700,6 +734,8 @@ namespace Persistencia.Data.Migrations
             modelBuilder.Entity("Dominio.Entities.Empleado", b =>
                 {
                     b.Navigation("MovimientosInventarios");
+
+                    b.Navigation("RefreshTokens");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Factura", b =>

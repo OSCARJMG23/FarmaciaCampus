@@ -13,9 +13,5 @@ public class RolConfiguration : IEntityTypeConfiguration<Rol>
         builder.Property(p => p.Nombre)
         .HasMaxLength(50)
         .IsRequired();
-
-        builder.HasMany(p => p.Empleados)
-        .WithOne(p => p.Rol)
-        .HasForeignKey(p => p.IdRolFk);
     }
 }

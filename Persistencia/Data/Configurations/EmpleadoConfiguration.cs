@@ -17,15 +17,9 @@ public class EmpleadoConfiguration : IEntityTypeConfiguration<Empleado>
         .IsRequired()
         .HasMaxLength(50);
 
-        builder.Property(e => e.Password)
-        .IsRequired()
-        .HasMaxLength(50);
-
         builder.Property(e => e.FechaContratacion)
         .IsRequired();
 
-        builder.HasMany(e => e.RefreshTokens)
-        .WithOne(e => e.Empleado)
-        .HasForeignKey(e => e.IdEmpleadoFk);
+
     }
 }

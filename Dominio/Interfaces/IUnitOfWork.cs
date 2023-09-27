@@ -21,6 +21,7 @@ public interface IUnitOfWork
     IRecetaRepository Recetas { get; }
     ITipoMovimientoRepository TiposMovimientos { get; }
     IRolRepository Roles { get; }
+    IUserRepository Users { get; }
 
     Task<int> SaveAsync();
 }
