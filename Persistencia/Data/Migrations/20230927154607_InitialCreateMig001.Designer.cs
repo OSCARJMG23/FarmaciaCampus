@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistencia.Data;
 
@@ -10,9 +11,11 @@ using Persistencia.Data;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(ApiFarmaciaContext))]
-    partial class ApiFarmaciaContextModelSnapshot : ModelSnapshot
+    [Migration("20230927154607_InitialCreateMig001")]
+    partial class InitialCreateMig001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -414,6 +417,9 @@ namespace Persistencia.Data.Migrations
                     b.Property<int>("IdEmpleadoFk")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PacienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Revoked")
                         .HasColumnType("datetime(6)");
 
@@ -423,6 +429,8 @@ namespace Persistencia.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IdEmpleadoFk");
+
+                    b.HasIndex("PacienteId");
 
                     b.ToTable("RefreshToken", (string)null);
                 });
@@ -638,6 +646,10 @@ namespace Persistencia.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Dominio.Entities.Paciente", null)
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("PacienteId");
+
                     b.Navigation("Empleado");
                 });
 
@@ -701,6 +713,8 @@ namespace Persistencia.Data.Migrations
                     b.Navigation("MovimientosInventario");
 
                     b.Navigation("Recetas");
+
+                    b.Navigation("RefreshTokens");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Pais", b =>
