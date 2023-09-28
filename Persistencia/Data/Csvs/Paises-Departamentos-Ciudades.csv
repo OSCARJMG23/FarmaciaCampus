@@ -1,8 +1,0 @@
-Id,NombreCiudad,IdDepartamentoFk,NombreDepartamento,IdPaisFk,NombrePais
-1,Bogotá,1,Cundinamarca,1,Colombia
-2,Medellín,2,Antioquia,1,Colombia
-3,Cali,3,Valle del Cauca,1,Colombia
-4,Caracas,4,Distrito Capital,2,Venezuela
-5,Maracaibo,5,Zulia,2,Venezuela
-6,Lima,6,Lima,3,Perú
-7,Arequipa,7,Arequipa,3,Perú

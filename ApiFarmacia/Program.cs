@@ -1,12 +1,15 @@
 using System.Reflection;
 using ApiFarmacia.Extensions;
 using AspNetCoreRateLimit;
+using Persistencie;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
+using Microsoft.OpenApi.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,7 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-/* using (var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
 	var services = scope.ServiceProvider;
 	var loggerFactory = services.GetRequiredService<ILoggerFactory>();
@@ -41,6 +44,7 @@ if (app.Environment.IsDevelopment())
 	{
 		var context = services.GetRequiredService<ApiFarmaciaContext>();
 		await context.Database.MigrateAsync();
+        await ApiFarmaciaContextSeed.SeedAsync(context, loggerFactory);
 	
 	}
 	catch (Exception ex)
@@ -48,7 +52,7 @@ if (app.Environment.IsDevelopment())
 		var _logger = loggerFactory.CreateLogger<Program>();
 		_logger.LogError(ex, "Ocurrio un error durante la migracion");
 	}
-} */
+}
 
 app.UseCors("CorsPolicy");
 
