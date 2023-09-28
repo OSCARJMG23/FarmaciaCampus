@@ -1,4 +1,4 @@
-Id,Nombre,IdDireccionFk,Telefono
-("María Rodríguez","123-456-7890",1),
-("Juan Pérez","987-654-3210",2),
-("Ana López","111-222-3333",3)
+Id,Nombre,Telefono,IdDireccionFk
+1,María Rodríguez,123-456-7890,1
+2,Juan Pérez,987-654-3210,2
+3,Ana López,111-222-3333,3

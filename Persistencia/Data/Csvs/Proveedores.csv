@@ -1,10 +1,10 @@
 Id,Nombre,Contacto,IdDireccionFk
-("Farmacia Santa María","555-123-4567",1),
-("Distribuidora Médica S.A.","555-987-6543",2),
-("Laboratorios PharmaCorp","555-234-5678",3),
-("Droguería San Rafael","555-876-5432",2),
-("Proveedora de Suministros Médicos","555-345-6789",3),
-("Distribuidora Farmacéutica ABC","555-765-4321",2),
-("Farmacias del Sur","555-456-7890",3),
-("Suministros Hospitalarios XYZ","555-654-3210",3),
-("Droguería El Éxito","555-987-6543",3)
+1,Farmacia Santa María,555-123-4567,1
+2,Distribuidora Médica S.A.,555-987-6543,2
+3,Laboratorios PharmaCorp,555-234-5678,3
+4,Droguería San Rafael,555-876-5432,2
+5,Proveedora de Suministros Médicos,555-345-6789,3
+6,Distribuidora Farmacéutica ABC,555-765-4321,2
+7,Farmacias del Sur,555-456-7890,3
+8,Suministros Hospitalarios XYZ,555-654-3210,3
+9,Droguería El Éxito,555-987-6543,3

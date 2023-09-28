@@ -47,7 +47,7 @@ public class MedicamentoController : BaseApiController
     return mapper.Map<List<MedicamentoDto>>(medicamento);
     }
 
-    [HttpGet("/nunca-vendido")]
+    [HttpGet("nunca-vendido")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -57,7 +57,7 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<List<MedicamentosDto>>(medicamentosNuncaVendidos);
     }
 
-    [HttpGet("/total-medicamentos-vendidosXmes-2023")]
+    [HttpGet("total-medicamentos-vendidosXmes-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -67,7 +67,7 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<List<MedicamentosDto>>(medicamentosVendidos2023);
     }
 
-    [HttpGet("/medicamentos-vendidosXmes-2023")]
+    [HttpGet("medicamentos-vendidosXmes-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -77,7 +77,7 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<List<MedicamentosDto>>(medicamentosVendidos2023);
     }
 
-    [HttpGet("/medicamentos-no-vendidos-2023")]
+    [HttpGet("medicamentos-no-vendidos-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -87,7 +87,7 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<List<MedicamentosDto>>(medicamentosVendidos2023);
     }
 
-    [HttpGet("/total-medicamentos-vendidos-primer-trimestre-2023")]
+    [HttpGet("total-medicamentos-vendidos-primer-trimestre-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -97,7 +97,7 @@ public class MedicamentoController : BaseApiController
         return medicamentosVendidos2023;
     }
 
-    [HttpGet("/medicamentos-precio-mas-50-stock-menos-100")]
+    [HttpGet("medicamentos-precio-mas-50-stock-menos-100")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

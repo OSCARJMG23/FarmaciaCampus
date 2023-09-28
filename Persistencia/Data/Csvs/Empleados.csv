@@ -1,8 +1,7 @@
-
 Id,Nombre,Cargo,FechaContratacion
-1,"Juan Pérez","Desarrollador",15/05/2023
-2,"Ana Gómez","Administrador",20/03/2023
-3,"Luis Martínez","Contador",05/07/2023
-4,"María Rodríguez","Analista de Datos",10/01/2023
-5,"Carlos López","Soporte Técnico",02/11/2023
-6,"Laura González","Recursos Humanos",/09/2023
+1,Juan Pérez,Desarrollador,'2023-09-28 14:30:00'
+2,Ana Gómez,Administrador,'2023-09-28 14:30:00'
+3,Luis Martínez,Contador,'2023-09-28 14:30:00'
+4,María Rodríguez,Analista de Datos,'2023-09-28 14:30:00'
+5,Carlos López,Soporte Técnico,'2023-09-28 14:30:00'
+6,Laura González,Recursos Humanos,'2023-09-28 14:30:00'

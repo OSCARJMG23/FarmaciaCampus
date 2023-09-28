@@ -38,7 +38,7 @@ public class EmpleadoController : BaseApiController
         return mapper.Map<EmpleadosDto>(empleados);
     }
 
-    [HttpGet("/mas-5-ventas")]
+    [HttpGet("mas-5-ventas")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -48,7 +48,7 @@ public class EmpleadoController : BaseApiController
         return  mapper.Map<List<EmpleadosDto>>(empleados5ventas);
     }
 
-    [HttpGet("/sin-ventas-2023")]
+    [HttpGet("sin-ventas-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -58,7 +58,7 @@ public class EmpleadoController : BaseApiController
         return  mapper.Map<List<EmpleadosDto>>(empleadosSinventas2023);
     }
 
-    [HttpGet("/menos-5-ventas-2023")]
+    [HttpGet("menos-5-ventas-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -68,7 +68,7 @@ public class EmpleadoController : BaseApiController
         return  mapper.Map<List<EmpleadosDto>>(empleadosSinventas2023);
     }
 
-    [HttpGet("/venta/mayorcantidad-medicamentos-distintos")]
+    [HttpGet("ventamayorcantidad-medicamentos-distintos")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -78,7 +78,7 @@ public class EmpleadoController : BaseApiController
         return  empleado;
     }
 
-    [HttpGet("/sin-ventas-abril-2023")]
+    [HttpGet("sin-ventas-abril-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
