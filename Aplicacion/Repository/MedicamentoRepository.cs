@@ -34,17 +34,11 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
 
         return MedicamentosNuncaVendidos;
     }
-    public async Task<IEnumerable<KeyValuePair<string, int>>> TotalMedicamentosVendidosXmes2023()
+    public async Task<int> TotalMedicamentosVendidosXmes2023(int mes)
     {
         var totalXmes = await _context.MovimientosInventarios
-        .Where(ti=>ti.IdTipoMovimientoFk == 2 && ti.FechaMovimiento.Year == 2023)
-        .GroupBy(ti =>ti.FechaMovimiento.ToString("MMMM yyyy"))
-        .Select(group=> new KeyValuePair<string,int>(
-                group.Key,
-                group.Sum(ti=>ti.Cantidad)
-        ))        
-        .ToListAsync();
-
+        .Where(ti=>ti.IdTipoMovimientoFk == 2 && ti.FechaMovimiento.Year == 2023 && ti.FechaMovimiento.Month == mes)
+        .SumAsync(t=>t.Cantidad);        
         return totalXmes;
     }
 
@@ -90,5 +84,10 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         .ToListAsync();
 
         return Medicamentos;
+    }
+
+    public Task<int> TotalMedicamentosVendidosXmes2023()
+    {
+        throw new NotImplementedException();
     }
 }

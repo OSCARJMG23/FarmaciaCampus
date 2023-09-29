@@ -57,14 +57,14 @@ public class MedicamentoController : BaseApiController
         return mapper.Map<List<MedicamentosDto>>(medicamentosNuncaVendidos);
     }
 
-    [HttpGet("total-medicamentos-vendidosXmes-2023")]
+    [HttpGet("total-medicamentos-vendidosXmes-2023/{mes}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<IEnumerable<MedicamentosDto>>> TotalMedicamentosVendidosXmes2023()
+    public async Task<ActionResult<int>> TotalMedicamentosVendidosXmes2023(int mes)
     {
-        var medicamentosVendidos2023 = await unitofwork.Medicamentos.TotalMedicamentosVendidosXmes2023();
-        return mapper.Map<List<MedicamentosDto>>(medicamentosVendidos2023);
+        var medicamentosVendidosxMes2023 = await unitofwork.Medicamentos.TotalMedicamentosVendidosXmes2023(mes);
+        return medicamentosVendidosxMes2023;
     }
 
     [HttpGet("medicamentos-vendidosXmes-2023")]

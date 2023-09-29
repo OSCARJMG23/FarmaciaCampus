@@ -58,7 +58,7 @@ public class EmpleadoRepository : GenericRepository<Empleado>, IEmpleadoReposito
             .Select(e => e)
             .OrderByDescending(e=>e.MovimientosInventarios
                 .Where(ni => ni.IdTipoMovimientoFk==2 && ni.FechaMovimiento.Year==2023)
-                .Select(ni => ni.Inventario.Medicamentos)
+                .Select(ni => ni.IdInventarioFk)
                 .Distinct()
                 .Count())
             .FirstOrDefaultAsync();
