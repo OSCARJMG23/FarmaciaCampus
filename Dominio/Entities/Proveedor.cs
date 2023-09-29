@@ -12,5 +12,6 @@ namespace Dominio.Entities
         public int IdDireccionFk { get; set; }
         public Direccion Direccion { get; set; }
         public ICollection<Medicamento> Medicamentos { get; set; }
+        public ICollection<MovimientoInventario> MovimientosInventario { get; set; }
     }
 }

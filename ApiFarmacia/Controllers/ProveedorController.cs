@@ -48,17 +48,21 @@ public class ProveedorController : BaseApiController
         return mapper.Map<List<ProveedoresDto>>(proveedor);
     }
 
-    [HttpGet("/suministro-mas-medicamentos-2023")]
+    [HttpGet("suministro-mas-medicamentos-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<ProveedorDto>> ProveedorMasSuministro2023()
     {
         var proveedor = await unitofwork.Proveedores.ProvedorSuministro5MedicamentosDiferentes2023();
+        if(proveedor == null)
+        {
+            return BadRequest();
+        }
         return mapper.Map<ProveedorDto>(proveedor);
     }
 
-    [HttpGet("/suministraron-2023")]
+    [HttpGet("suministraron-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -68,7 +72,7 @@ public class ProveedorController : BaseApiController
         return TotalProveedores;
     }
 
-    [HttpGet("/medicamentos-menos-50-stock")]
+    [HttpGet("medicamentos-menos-50-stock")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -78,7 +82,7 @@ public class ProveedorController : BaseApiController
         return mapper.Map<List<ProveedoresDto>>(proveedores);
     }
 
-    [HttpGet("/suministro-almenos-5-medicamentos-diferentes-2023")]
+    [HttpGet("suministro-almenos-5-medicamentos-diferentes-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

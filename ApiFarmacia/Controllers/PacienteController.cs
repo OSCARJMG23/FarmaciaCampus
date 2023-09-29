@@ -37,7 +37,7 @@ public class PacienteController : BaseApiController
         return mapper.Map<PacientesDto>(pacientes);
     }
 
-    [HttpGet("/gastado-mas-dinero-2023")]
+    [HttpGet("gastado-mas-dinero-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -47,7 +47,7 @@ public class PacienteController : BaseApiController
         return paciente;
     }
 
-    [HttpGet("/compraron-paracetamol-2023")]
+    [HttpGet("compraron-paracetamol-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -57,7 +57,7 @@ public class PacienteController : BaseApiController
         return mapper.Map<List<PacientesDto>>(pacientes);
     }
 
-    [HttpGet("/no-compraron-2023")]
+    [HttpGet("no-compraron-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -67,7 +67,7 @@ public class PacienteController : BaseApiController
         return mapper.Map<List<PacientesDto>>(pacientes);
     }
 
-    [HttpGet("/total-gastadoXpaciente-2023")]
+    [HttpGet("total-gastadoXpaciente-2023")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

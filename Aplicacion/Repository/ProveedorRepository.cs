@@ -21,13 +21,28 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
 
     public async Task<Proveedor> ProveedorMasSuministros2023()
     {
-        var Proveedor = await _context.Proveedores
+        /* var Proveedor = await _context.Proveedores
             .OrderByDescending(p=>p.Medicamentos
                 .SelectMany(h=>h.Inventario.MovimientosInventario)
                 .Where(ti=>ti.IdTipoMovimientoFk == 1 && ti.FechaMovimiento.Year ==2023)
                 .Sum(ti=>ti.Cantidad))
+                .FirstOrDefaultAsync();
+        return Proveedor; */
+
+/*         var proveedor = await _context.Proveedores
+            .OrderByDescending(e => e.MovimientosInventario
+            .Where(t=>t.IdTipoMovimientoFk ==1 && t.FechaMovimiento.Year ==2023)
+            .Sum(t=>t.Cantidad))
+            .FirstOrDefaultAsync(); */
+
+/*             var proveedor = await _context.Proveedores
+            .OrderByDescending(e => e.MovimientosInventario.Count())
+            .FirstOrDefaultAsync(); */
+            var proveedor = await _context.Proveedores
+            .OrderByDescending(e => e.MovimientosInventario.Sum(t=>t.Cantidad))
             .FirstOrDefaultAsync();
-        return Proveedor;
+
+        return proveedor;
     }
 
     public async Task<int>TotalProveedoresSuministro2023()

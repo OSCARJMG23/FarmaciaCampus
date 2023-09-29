@@ -30,7 +30,6 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
         .HasColumnType("int");
 
         builder.Property(m => m.IdPacienteFk)
-        .IsRequired()
         .HasColumnType("int");
 
         builder.Property(m => m.IdTipoMovimientoFk)
@@ -56,5 +55,9 @@ public class MovimientoInventarioConfiguration : IEntityTypeConfiguration<Movimi
         builder.HasOne(d=> d.Inventario)
         .WithMany(d=> d.MovimientosInventario)
         .HasForeignKey(d=>d.IdInventarioFk);
+
+        builder.HasOne(m=>m.Proveedor)
+        .WithMany(t=>t.MovimientosInventario)
+        .HasForeignKey (m=>m.IdProveedorFk);
     }
 }

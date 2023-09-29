@@ -9,7 +9,7 @@ namespace Dominio.Entities
     {
         public int IdEmpleadoFk { get; set; }
         public Empleado Empleado { get; set; }
-        public int IdPacienteFk { get; set; }
+        public int? IdPacienteFk { get; set; }
         public Paciente Paciente { get; set; }
         public int Cantidad { get; set; }
         public int Precio { get; set; }
@@ -20,6 +20,7 @@ namespace Dominio.Entities
         public Factura Factura { get; set; }
         public int IdInventarioFk { get; set; }
         public Inventario Inventario { get; set; }
-
+        public int? IdProveedorFk { get; set; }
+        public Proveedor Proveedor { get; set; }
     }
 }
