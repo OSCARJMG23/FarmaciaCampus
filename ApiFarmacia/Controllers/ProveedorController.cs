@@ -3,6 +3,7 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Aplicacion.Repository;
 
 namespace ApiFarmacia.Controllers;
 
@@ -38,13 +39,13 @@ public class ProveedorController : BaseApiController
         return mapper.Map<ProveedoresDto>(proveedores);
     }
 
-    [HttpGet("proveedorMedica")]
+    [HttpGet("GetMedisXProve")] 
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<ProveedoresDto>>> Get3()
+    public async Task<ActionResult<IEnumerable<ProveedoresDto>>> GetMedisXProve()
     {
-        var proveedor = await unitofwork.Proveedores.GetAllAsync();
+        var proveedor = await unitofwork.Proveedores.GetMedicamentosPorProveedor();
         return mapper.Map<List<ProveedoresDto>>(proveedor);
     }
 
@@ -90,6 +91,33 @@ public class ProveedorController : BaseApiController
     {
         var proveedores = await unitofwork.Proveedores.ProvedorSuministro5MedicamentosDiferentes2023();
         return mapper.Map<List<ProveedoresDto>>(proveedores);
+    [HttpGet("proveedorMedica")] 
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetMediProveA()
+    {
+        var medicamentos = await unitofwork.MovimientosInventarios.GetMedicamentosProveedorA();
+        return mapper.Map<List<MedicamentoDto>>(medicamentos);
+    }
+
+    [HttpGet("GetProveeNoVenMedis")] 
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<ProveedorDto>>> GetProveNoVentas()
+    {
+        var proveedoresNoVenta = await unitofwork.Proveedores.GetProveNoVenMedis();
+        return mapper.Map<List<ProveedorDto>>(proveedoresNoVenta);
+    }
+
+    [HttpGet("GetGananTotalProvee")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<dynamic>>> GetGananTotalProvee()
+    {
+        var gananciaTotal = await unitofwork.Proveedores.GetGananciaXProvee();
+        return gananciaTotal;
     }
 
     [HttpPost]

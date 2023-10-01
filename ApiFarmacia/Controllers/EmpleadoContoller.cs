@@ -86,6 +86,14 @@ public class EmpleadoController : BaseApiController
     {
         var empleadosSinventasAbril2023 = await unitofwork.Empleados.EmpleadoSinVentaAbril();
         return  mapper.Map<List<EmpleadosDto>>(empleadosSinventasAbril2023);
+    [HttpGet("CantVentaEmple")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IEnumerable<dynamic>> GetCantVent()
+    {
+        var cantVentas = await unitofwork.Empleados.GetCantVentXEmple2023();
+        return cantVentas;
     }
 
     [HttpPost]

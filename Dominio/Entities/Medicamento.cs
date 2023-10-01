@@ -8,7 +8,7 @@ namespace Dominio.Entities
     public class Medicamento : BaseEntity
     {
         public string Nombre { get; set; }
-        public int Precio { get; set; }
+        public double Precio { get; set; }
         public DateTime FechaExpiracion { get; set; }
         public int IdProveedorFk { get; set; }
         public Proveedor Proveedor { get; set; }

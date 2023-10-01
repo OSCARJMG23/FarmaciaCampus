@@ -13,7 +13,7 @@ public class MedicamentoController : BaseApiController
 
     public MedicamentoController(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        this.unitofwork = unitOfWork;
+        this.unitofwork = unitOfWork; 
         this.mapper = mapper;
     } 
 
@@ -43,8 +43,68 @@ public class MedicamentoController : BaseApiController
 
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetStock50()
     {
-    var medicamento = await unitofwork.Medicamentos.GetStockCincu();
-    return mapper.Map<List<MedicamentoDto>>(medicamento);
+        var medicamento = await unitofwork.Medicamentos.GetStockCincu();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+
+    [HttpGet("GetCadu2024")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetCadu2024()
+    {
+        var medicamento = await unitofwork.Medicamentos.Get2024Expiracion();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+    
+    [HttpGet("GetTotalParace")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<int> GetTotalParace()
+    {
+        var cantiParaceta = await unitofwork.Medicamentos.TotalVenParace();
+        return cantiParaceta;
+    }
+
+    [HttpGet("Get2024Expi")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> Get2024Expi()
+    {
+        var medicamento = await unitofwork.Medicamentos.Get2024DespuExpiracion();
+        return mapper.Map<List<MedicamentoDto>>(medicamento);
+    }
+
+    [HttpGet("GetMedisVendMarzo")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<int> GetMedisMarzo()
+    {
+        var medicamento = await unitofwork.Medicamentos.GetTotalMedicVendidosMarzo();
+        return medicamento;
+    }
+    
+    [HttpGet("GetMediCaro")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<Medicamento> GetMediCaro()
+    {
+        var medicamento = await unitofwork.Medicamentos.GetMasCaro();
+        return medicamento;
+    }
+
+    [HttpGet("GetMediMenosVe2023")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<Medicamento> GetMediMenosVe2023()
+    {
+        var medicamento = await unitofwork.Medicamentos.GetMediMenosVen2023();
+        return medicamento;
     }
 
     [HttpGet("nunca-vendido")]

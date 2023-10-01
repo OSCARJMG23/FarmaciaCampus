@@ -38,6 +38,56 @@ public class MovimientoInventarioController : BaseApiController
     }
     
 
+    [HttpGet("GetTotalMedisVendi")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<Medicamento>>> GetTotalMediVendi()
+    {
+        var medisVendiTotal = await unitofwork.MovimientosInventarios.GetTotalMedisVenXProve();
+        return mapper.Map<List<Medicamento>>(medisVendiTotal);
+    }
+
+    [HttpGet("GetTotalRecaudado")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<double> GetTotalRecaudado()
+    {
+        var totalReacaudadoo = await unitofwork.MovimientosInventarios.GetTotalDineroVentMedi();
+        return totalReacaudadoo;
+    }
+    
+    [HttpGet("GetMediNoVendidos")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public List<Medicamento> GetMediNoVendidos()
+    {
+        var medisNovendi = unitofwork.MovimientosInventarios.GetMedicamentosNoVendidos();
+        return medisNovendi;
+    }
+
+    [HttpGet("GetPacienComParace")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IQueryable<Paciente> GetPacienComParace()
+    {
+        var pacientesParace = unitofwork.MovimientosInventarios.GetPacientesCompraParacetamol();
+        return pacientesParace;
+    }
+
+    [HttpGet("GetPromMedis")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public double GetPromMedis()
+    {
+        var promedioMedis = unitofwork.MovimientosInventarios.GetPromMedisComprXPacXVen();
+        return promedioMedis;
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
