@@ -48,8 +48,8 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         .Where(e => e.Inventario.MovimientosInventario
             .Where(mi => mi.IdTipoMovimientoFk == 2 && mi.FechaMovimiento.Year == 2023)
             .GroupBy(mi=> mi.FechaMovimiento.Month )
-            .All(group=>group.Any())
-        ).ToListAsync();
+            .Count()==12)
+            .ToListAsync();
 
         return Medicamentos;
     }
@@ -86,8 +86,4 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         return Medicamentos;
     }
 
-    public Task<int> TotalMedicamentosVendidosXmes2023()
-    {
-        throw new NotImplementedException();
-    }
 }

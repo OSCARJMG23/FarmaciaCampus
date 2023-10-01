@@ -22,6 +22,7 @@ public class MappingProfiles : Profile
 
         CreateMap<Paciente, PacienteDto>().ReverseMap();
         CreateMap<Paciente, PacientesDto>().ReverseMap();
+        CreateMap<Paciente, PacienteGastosDto>().ReverseMap();
 
         CreateMap<Proveedor, ProveedorDto>().ReverseMap();
         CreateMap<Proveedor, ProveedoresDto>().ReverseMap();

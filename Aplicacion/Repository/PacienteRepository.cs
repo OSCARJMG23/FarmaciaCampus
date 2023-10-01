@@ -74,9 +74,17 @@ public class PacienteRepository : GenericRepository<Paciente>, IPacienteReposito
         })
         .ToListAsync();
 
+        var pacientesId = pacientesConGasto2023.Select(pc=>pc.PacienteId).ToList();
+
         var pacientes = await _context.Pacientes
-            .Where(p => pacientesConGasto2023.Any(pc => pc.PacienteId == p.Id))
+            .Where(p=>pacientesId.Contains(p.Id))
             .ToListAsync();
+
+        foreach (var paciente in pacientes)
+        {
+            var totalGastado = pacientesConGasto2023.FirstOrDefault(pc=> pc.PacienteId== paciente.Id)?.TotalGastado ??0;
+            paciente.TotalGastado = totalGastado;
+        }
 
         return pacientes;
     }

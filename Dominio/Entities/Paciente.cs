@@ -8,4 +8,7 @@ public class Paciente : BaseEntity
     public string Telefono { get; set; }
     public ICollection<RecetaMedica> Recetas { get; set; }
     public ICollection<MovimientoInventario> MovimientosInventario { get; set; }
+
+
+    public decimal TotalGastado { get; set; }
 }

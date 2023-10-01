@@ -41,10 +41,10 @@ public class PacienteController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<Paciente>> PacienteGastadoMasDinero2023()
+    public async Task<ActionResult<PacienteDto>> PacienteGastadoMasDinero2023()
     {
         var paciente = await unitofwork.Pacientes.PacienteGastadoMasDinero2023();
-        return paciente;
+        return mapper.Map<PacienteDto>(paciente);
     }
 
     [HttpGet("compraron-paracetamol-2023")]
@@ -71,10 +71,12 @@ public class PacienteController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<IEnumerable<PacientesDto>>> TotalGastadoXpaciente()
+    public async Task<ActionResult<IEnumerable<PacienteDto>>> TotalGastadoXpaciente()
     {
         var pacientes = await unitofwork.Pacientes.TotalGastadoXpaciente2023();
-        return mapper.Map<List<PacientesDto>>(pacientes);
+
+
+        return Ok(pacientes);
     }
 
     [HttpPost]

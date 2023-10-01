@@ -54,7 +54,7 @@ public class ProveedorController : BaseApiController
 
     public async Task<ActionResult<ProveedorDto>> ProveedorMasSuministro2023()
     {
-        var proveedor = await unitofwork.Proveedores.ProvedorSuministro5MedicamentosDiferentes2023();
+        var proveedor = await unitofwork.Proveedores.ProveedorMasSuministros2023();
         if(proveedor == null)
         {
             return BadRequest();
