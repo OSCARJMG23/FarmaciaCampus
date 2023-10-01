@@ -91,6 +91,8 @@ public class ProveedorController : BaseApiController
     {
         var proveedores = await unitofwork.Proveedores.ProvedorSuministro5MedicamentosDiferentes2023();
         return mapper.Map<List<ProveedoresDto>>(proveedores);
+    }
+    
     [HttpGet("proveedorMedica")] 
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

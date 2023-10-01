@@ -79,6 +79,7 @@ public class EmpleadoRepository : GenericRepository<Empleado>, IEmpleadoReposito
         .ToListAsync();
 
         return Empleados;
+    }
     public async Task<IEnumerable<dynamic>> GetCantVentXEmple2023()
     {
         DateTime fechaInicio = new DateTime(2023, 1, 1);
