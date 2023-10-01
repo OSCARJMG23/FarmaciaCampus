@@ -51,7 +51,7 @@ public class MovimientoInventarioController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<decimal> GetTotalRecaudado()
+    public async Task<double> GetTotalRecaudado()
     {
         var totalReacaudadoo = await unitofwork.MovimientosInventarios.GetTotalDineroVentMedi();
         return totalReacaudadoo;

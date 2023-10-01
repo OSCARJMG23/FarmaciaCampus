@@ -49,9 +49,9 @@ public class MovimientoInventarioRepository : GenericRepository<MovimientoInvent
         return medicamentosVendidosPorProveedor;
     }
 
-    public async Task<decimal> GetTotalDineroVentMedi()
+    public async Task<double> GetTotalDineroVentMedi()
     {
-        decimal totalVentas = await _context.MovimientosInventarios
+        double totalVentas = await _context.MovimientosInventarios
             .Where(movimiento => movimiento.IdTipoMovimientoFk == 2)
             .Where(movimiento => movimiento.Inventario != null && movimiento.Inventario.Medicamentos != null)
             .SelectMany(movimiento => movimiento.Inventario.Medicamentos, (movimiento, medicamento) => movimiento.Cantidad * medicamento.Precio)
