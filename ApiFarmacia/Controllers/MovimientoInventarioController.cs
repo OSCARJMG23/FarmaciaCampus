@@ -41,10 +41,10 @@ public class MovimientoInventarioController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<Medicamento>> GetTotalMediVendi()
+    public async Task<ActionResult<IEnumerable<Medicamento>>> GetTotalMediVendi()
     {
         var medisVendiTotal = await unitofwork.MovimientosInventarios.GetTotalMedisVenXProve();
-        return mapper.Map<Medicamento>(medisVendiTotal);
+        return mapper.Map<List<Medicamento>>(medisVendiTotal);
     }
 
     [HttpGet("GetTotalRecaudado")]

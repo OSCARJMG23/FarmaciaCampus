@@ -11,5 +11,5 @@ public interface IMovimientoInventarioRepository : IGenericRepository<Movimiento
     List<Medicamento> GetMedicamentosNoVendidos();
     IQueryable<Paciente> GetPacientesCompraParacetamol();
     double GetPromMedisComprXPacXVen();
-    Task<ActionResult<IEnumerable<Proveedor>>> GetProveNoVenMedis();
+
 }

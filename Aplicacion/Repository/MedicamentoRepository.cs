@@ -14,9 +14,11 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         _context = context;
     }
 
-    public async Task<IEnumerable<Inventario>> GetStockCincu()
+    public async Task<IEnumerable<Medicamento>> GetStockCincu()
     {   
-        var medicamentosMenorCincu = await _context.Inventarios.Where(m => m.Stock < 50).ToListAsync();
+        var medicamentosMenorCincu = await _context.Medicamentos
+            .Where(p=>p.Inventario.Stock <=50)
+            .ToListAsync();
         return medicamentosMenorCincu; 
     }
 
@@ -39,8 +41,9 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
 
     public async Task<IEnumerable<Medicamento>> Get2024DespuExpiracion()
     {   
-        DateTime fechaLimite = new DateTime(2024, 1, 1);
-        var medicamentosExp2024 = await _context.Medicamentos.Where(m => m.FechaExpiracion < fechaLimite).ToListAsync();
+        var medicamentosExp2024 = await _context.Medicamentos
+        .Where(m => m.FechaExpiracion.Year == 2024)
+        .ToListAsync();
         return medicamentosExp2024;
     }    
 

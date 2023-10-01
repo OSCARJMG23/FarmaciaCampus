@@ -29,7 +29,7 @@ public class EmpleadoRepository : GenericRepository<Empleado>, IEmpleadoReposito
             .FirstOrDefaultAsync(u => u.Nombre.ToLower() == nombre.ToLower());
     }
 
-    public async Task<IEnumerable<int>> GetCantVentXEmple2023()
+    public async Task<IEnumerable<dynamic>> GetCantVentXEmple2023()
     {
         DateTime fechaInicio = new DateTime(2023, 1, 1);
         DateTime fechaFin = new DateTime(2024, 1, 1);
@@ -37,8 +37,14 @@ public class EmpleadoRepository : GenericRepository<Empleado>, IEmpleadoReposito
         var cantVentasPorEmpleado = await _context.MovimientosInventarios
             .Where(m => m.IdTipoMovimientoFk == 2 && m.FechaMovimiento >= fechaInicio && m.FechaMovimiento < fechaFin)
             .GroupBy(m => m.IdEmpleadoFk)
-            .Select(g => g.Sum(m => m.Cantidad)).ToListAsync();
+            .Select(g => new
+            {
+                Empleado = _context.Empleados.FirstOrDefault(e=>e.Id ==g.Key).Nombre,
+                Ventas = g.Count()
+            })
+            .ToListAsync();
 
-        return cantVentasPorEmpleado;
+
+        return cantVentasPorEmpleado.Select(p=> new {p.Empleado, p.Ventas }).ToList();
     }
 }

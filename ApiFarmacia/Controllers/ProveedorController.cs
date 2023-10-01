@@ -65,7 +65,7 @@ public class ProveedorController : BaseApiController
 
     public async Task<ActionResult<IEnumerable<ProveedorDto>>> GetProveNoVentas()
     {
-        var proveedoresNoVenta = await unitofwork.MovimientosInventarios.GetProveNoVenMedis();
+        var proveedoresNoVenta = await unitofwork.Proveedores.GetProveNoVenMedis();
         return mapper.Map<List<ProveedorDto>>(proveedoresNoVenta);
     }
 

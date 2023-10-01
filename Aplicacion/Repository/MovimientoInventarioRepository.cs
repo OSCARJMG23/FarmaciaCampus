@@ -111,18 +111,4 @@ public class MovimientoInventarioRepository : GenericRepository<MovimientoInvent
         return promedio;
     }
 
-    public async Task<ActionResult<IEnumerable<Proveedor>>> GetProveNoVenMedis()
-    {
-        DateTime fechaInicio = new DateTime(2023, 1, 1);
-        DateTime fechaFin = new DateTime(2023, 12, 31);
-
-        var proveedoresVendieron = _context.MovimientosInventarios
-            .Where(m => m.FechaMovimiento >= fechaInicio && m.FechaMovimiento <= fechaFin
-                && m.IdTipoMovimientoFk == 2)
-            .Select(m => m.IdInventarioFk);
-        var proveedoresNoVendieron = _context.Proveedores
-            .Where(p => !proveedoresVendieron.Contains(p.IdDireccionFk)).ToList();
-
-        return proveedoresNoVendieron;
-    }
 }

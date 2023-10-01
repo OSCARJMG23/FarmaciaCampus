@@ -6,5 +6,5 @@ public interface IEmpleadoRepository : IGenericRepository<Empleado>
 {
     Task<Empleado> GetByUsernameAsync(string nombre);
     Task<Empleado> GetByRefreshTokenAsync(string nombre);
-    Task<IEnumerable<int>> GetCantVentXEmple2023();
+    Task<IEnumerable<dynamic>> GetCantVentXEmple2023();
 }

@@ -7,4 +7,5 @@ public interface IProveedorRepository : IGenericRepository<Proveedor>
 {
     Task<IEnumerable<Proveedor>> GetMedicamentosPorProveedor(); 
     Task<ActionResult<IEnumerable<dynamic>>> GetGananciaXProvee();
+    Task<IEnumerable<Proveedor>> GetProveNoVenMedis();
 }

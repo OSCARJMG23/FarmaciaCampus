@@ -56,6 +56,18 @@ public class ProveedorRepository : GenericRepository<Proveedor>, IProveedorRepos
 
     //     return medicamentosProveedorA;
     // }
+    public async Task<IEnumerable<Proveedor>> GetProveNoVenMedis()
+    {
+        var fechaUltimoAño = DateTime.Now.AddYears(-1);
 
+        var proveedoresNoVendieron = await _context.Proveedores
+        .Where(p=>p.Medicamentos
+        .Any(p=>!p.Inventario.MovimientosInventario
+        .Any(p=>p.FechaMovimiento >=fechaUltimoAño && p.IdTipoMovimientoFk ==1)))
+        .ToListAsync();
+        
+
+        return proveedoresNoVendieron;
+    }
     
 }

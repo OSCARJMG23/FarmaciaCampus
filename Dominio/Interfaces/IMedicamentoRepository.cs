@@ -4,7 +4,7 @@ namespace Dominio.Interfaces;
 
 public interface IMedicamentoRepository : IGenericRepository<Medicamento>
 {
-    Task<IEnumerable<Inventario>> GetStockCincu(); 
+    Task<IEnumerable<Medicamento>> GetStockCincu(); 
     Task<IEnumerable<Medicamento>> Get2024Expiracion(); 
     Task<int> TotalVenParace();  
     Task<IEnumerable<Medicamento>> Get2024DespuExpiracion();

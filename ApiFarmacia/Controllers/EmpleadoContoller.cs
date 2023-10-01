@@ -43,7 +43,7 @@ public class EmpleadoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IEnumerable<int>> GetCantVent()
+    public async Task<IEnumerable<dynamic>> GetCantVent()
     {
         var cantVentas = await unitofwork.Empleados.GetCantVentXEmple2023();
         return cantVentas;
