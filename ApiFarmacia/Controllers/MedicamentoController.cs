@@ -3,6 +3,7 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiFarmacia.Controllers;
 
@@ -18,6 +19,8 @@ public class MedicamentoController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.1")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -28,6 +31,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -38,6 +42,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetStock50")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -48,6 +53,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetCadu2024")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -58,6 +64,7 @@ public class MedicamentoController : BaseApiController
     }
     
     [HttpGet("GetTotalParace")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -68,6 +75,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("Get2024Expi")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -78,6 +86,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetMedisVendMarzo")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -88,6 +97,7 @@ public class MedicamentoController : BaseApiController
     }
     
     [HttpGet("GetMediCaro")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -98,6 +108,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetMediMenosVe2023")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -108,6 +119,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("nunca-vendido")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -118,6 +130,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("total-medicamentos-vendidosXmes-2023/{mes}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -128,6 +141,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("medicamentos-vendidosXmes-2023")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -138,6 +152,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("medicamentos-no-vendidos-2023")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -148,6 +163,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("total-medicamentos-vendidos-primer-trimestre-2023")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -158,6 +174,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("medicamentos-precio-mas-50-stock-menos-100")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -168,6 +185,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpPost]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Medicamento>> Post(MedicamentoDto medicamentoDto)
@@ -183,6 +201,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpPut]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -199,6 +218,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
