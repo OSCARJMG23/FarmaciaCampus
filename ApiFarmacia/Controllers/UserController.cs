@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 
 namespace ApiFarmacia.Controllers
 {
-    [Route("[controller]")]
     public class UserController : BaseApiController
     {
         private readonly IUserService _userService;

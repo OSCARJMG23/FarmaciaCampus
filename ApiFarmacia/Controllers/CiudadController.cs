@@ -3,6 +3,7 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiFarmacia.Controllers;
 
@@ -18,6 +19,7 @@ public class CiudadController : BaseApiController
     } 
 
     [HttpGet]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

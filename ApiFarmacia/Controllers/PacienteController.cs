@@ -3,6 +3,7 @@ using AutoMapper;
 using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiFarmacia.Controllers;
 
@@ -38,6 +39,7 @@ public class PacienteController : BaseApiController
     }
 
     [HttpGet("gastado-mas-dinero-2023")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

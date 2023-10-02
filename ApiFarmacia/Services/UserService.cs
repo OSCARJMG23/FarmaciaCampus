@@ -77,7 +77,7 @@ namespace ApiFarmacia.Services
         if (user == null)
         {
             dataUserDto.IsAuthenticated = false;
-            dataUserDto.Message = $"User does not exist with username {model.Username}.";
+            dataUserDto.Message = $"Usuario no Existe";
             return dataUserDto;
         }
 
@@ -97,6 +97,7 @@ namespace ApiFarmacia.Services
             if (user.RefreshTokens.Any(a => a.IsActive))
             {
                 var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                /* dataUserDto.Message = "Usuario Existente"; */
                 dataUserDto.RefreshToken = activeRefreshToken.Token;
                 dataUserDto.RefreshTokenExpiration = activeRefreshToken.Expires;
             }
@@ -113,7 +114,7 @@ namespace ApiFarmacia.Services
             return dataUserDto;
         }
         dataUserDto.IsAuthenticated = false;
-        dataUserDto.Message = $"Credenciales incorrectas para el usuario {user.Username}.";
+        dataUserDto.Message = $"Credenciales incorrectas para el usuario";
         return dataUserDto;
     }
     public async Task<string> AddRoleAsync(AddRolDto model)
