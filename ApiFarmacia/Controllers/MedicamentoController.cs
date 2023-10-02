@@ -4,9 +4,11 @@ using Dominio.Interfaces;
 using ApiFarmacia.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using ApiFarmacia.Helpers;
 
 namespace ApiFarmacia.Controllers;
-
+    [ApiVersion("1.0")]
+    [ApiVersion("1.1")]
 public class MedicamentoController : BaseApiController
 {
     private IUnitOfWork unitofwork;
@@ -19,18 +21,20 @@ public class MedicamentoController : BaseApiController
     } 
 
     [HttpGet]
-    [MapToApiVersion("1.1")]
+    [MapToApiVersion("1.0")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<MedicamentoDto>>> Get()
+    public async Task<ActionResult<Pager<MedicamentoDto>>> Get([FromQuery]Params medicamentoParams)
     {
-        var medicamento = await unitofwork.Medicamentos.GetAllAsync();
-        return mapper.Map<List<MedicamentoDto>>(medicamento);
+        var medicamento = await unitofwork.Medicamentos.GetAllAsync(medicamentoParams.PageIndex,medicamentoParams.PageSize, medicamentoParams.Search);
+        var listaMedicamentosDto= mapper.Map<List<MedicamentoDto>>(medicamento.registros);
+        return new Pager<MedicamentoDto>(listaMedicamentosDto, medicamento.totalRegistros,medicamentoParams.PageIndex,medicamentoParams.PageSize,medicamentoParams.Search);
     }
 
     [HttpGet("{id}")]
+    [MapToApiVersion("1.1")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
