@@ -20,7 +20,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -31,7 +31,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("{Id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,7 +43,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("GetMedisXProve")] 
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -54,7 +54,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("suministro-mas-medicamentos-2023")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -69,7 +69,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("suministraron-2023")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -80,7 +80,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("medicamentos-menos-50-stock")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -91,7 +91,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("suministro-almenos-5-medicamentos-diferentes-2023")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -102,7 +102,7 @@ public class ProveedorController : BaseApiController
     }
     
     [HttpGet("proveedorMedica")] 
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -113,7 +113,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("GetProveeNoVenMedis")] 
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -124,7 +124,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("GetGananTotalProvee")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<dynamic>>> GetGananTotalProvee()
@@ -134,7 +134,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpPost]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -151,7 +151,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpPut]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -168,7 +168,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

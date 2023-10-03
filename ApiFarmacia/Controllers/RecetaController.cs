@@ -19,7 +19,7 @@ public class RecetaController : BaseApiController
     } 
 
     [HttpGet]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -30,7 +30,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -41,7 +41,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpGet("GetRecetas2023")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -52,7 +52,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpPost]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<RecetaMedica>> Post(RecetaMedica recetaa)
@@ -68,7 +68,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpPut]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -85,7 +85,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

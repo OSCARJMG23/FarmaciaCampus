@@ -19,7 +19,7 @@ public class DireccionController : BaseApiController
     } 
 
     [HttpGet]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -30,7 +30,7 @@ public class DireccionController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -41,7 +41,7 @@ public class DireccionController : BaseApiController
     }
 
     [HttpPost]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Direccion>> Post(Direccion direccionn)
@@ -57,7 +57,7 @@ public class DireccionController : BaseApiController
     }
 
     [HttpPut]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -74,7 +74,7 @@ public class DireccionController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

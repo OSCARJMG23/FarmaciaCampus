@@ -19,7 +19,7 @@ public class FormaDePagoController : BaseApiController
     } 
 
     [HttpGet]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -30,7 +30,7 @@ public class FormaDePagoController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -41,7 +41,7 @@ public class FormaDePagoController : BaseApiController
     }
 
     [HttpPost]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<FormaDePago>> Post(FormaDePago formaPagoo)
@@ -57,7 +57,7 @@ public class FormaDePagoController : BaseApiController
     }
 
     [HttpPut]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -74,7 +74,7 @@ public class FormaDePagoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    /* [Authorize] */
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
