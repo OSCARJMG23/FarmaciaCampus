@@ -19,8 +19,7 @@ public class RecetaController : BaseApiController
     } 
 
     [HttpGet]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<RecetaMedica>>> Get()
@@ -30,8 +29,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<RecetaMedica>> Get(int id)
@@ -41,8 +39,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpGet("GetRecetas2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<RecetaMedica>>> GetRecetas2023()
@@ -52,8 +49,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpPost]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<RecetaMedica>> Post(RecetaMedica recetaa)
     {
@@ -68,8 +64,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpPut]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -85,8 +80,7 @@ public class RecetaController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
     public async Task<ActionResult> Delete (int id)

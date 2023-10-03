@@ -20,8 +20,7 @@ public class EmpleadoController : BaseApiController
     } 
 
     [HttpGet]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<EmpleadoDto>>> Get()
@@ -31,8 +30,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EmpleadosDto>> Get(int id)
@@ -42,8 +40,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpGet("mas-5-ventas")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadoMas5Ventas(int id)
@@ -53,8 +50,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpGet("sin-ventas-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadoSinVentas2023()
@@ -64,8 +60,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpGet("menos-5-ventas-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadosMenos5Ventas2023()
@@ -75,8 +70,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpGet("ventamayorcantidad-medicamentos-distintos")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<Empleado>> EmpleadoMayorCantidadVentaDistintosMedicamentos()
@@ -86,8 +80,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpGet("sin-ventas-abril-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<EmpleadosDto>>> EmpleadoSinVentasAbril2023()
@@ -96,8 +89,7 @@ public class EmpleadoController : BaseApiController
         return  mapper.Map<List<EmpleadosDto>>(empleadosSinventasAbril2023);
     }
     [HttpGet("CantVentaEmple")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IEnumerable<dynamic>> GetCantVent()
@@ -107,8 +99,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpPost]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Empleado>> Post(EmpleadoDto empleadoDto)
     {
@@ -123,8 +114,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpPut]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -140,8 +130,7 @@ public class EmpleadoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
     public async Task<ActionResult> Delete (int id)

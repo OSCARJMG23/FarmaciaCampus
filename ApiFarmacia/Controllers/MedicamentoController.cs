@@ -22,8 +22,7 @@ public class MedicamentoController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<Pager<MedicamentoDto>>> Get([FromQuery]Params medicamentoParams)
@@ -35,8 +34,7 @@ public class MedicamentoController : BaseApiController
 
     [HttpGet("{id}")]
     [MapToApiVersion("1.1")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<MedicamentosDto>> Get(int id)
@@ -46,8 +44,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetStock50")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetStock50()
@@ -57,8 +54,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetCadu2024")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetCadu2024()
@@ -68,8 +64,7 @@ public class MedicamentoController : BaseApiController
     }
     
     [HttpGet("GetTotalParace")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<int> GetTotalParace()
@@ -79,8 +74,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("Get2024Expi")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>> Get2024Expi()
@@ -90,8 +84,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetMedisVendMarzo")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<int> GetMedisMarzo()
@@ -101,8 +94,7 @@ public class MedicamentoController : BaseApiController
     }
     
     [HttpGet("GetMediCaro")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<Medicamento> GetMediCaro()
@@ -112,8 +104,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("GetMediMenosVe2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<Medicamento> GetMediMenosVe2023()
@@ -123,8 +114,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("nunca-vendido")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<MedicamentosDto>>> MedicamentosNuncaVendidos()
@@ -134,8 +124,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("total-medicamentos-vendidosXmes-2023/{mes}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<int>> TotalMedicamentosVendidosXmes2023(int mes)
@@ -145,8 +134,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("medicamentos-vendidosXmes-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<MedicamentosDto>>> MedicamentosVendidosXmes2023()
@@ -156,8 +144,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("medicamentos-no-vendidos-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<MedicamentosDto>>> MedicamentosNoVendidos2023()
@@ -167,8 +154,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("total-medicamentos-vendidos-primer-trimestre-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<int>> MedicamentosVendidosPrimerTrimestre2023()
@@ -178,8 +164,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("medicamentos-precio-mas-50-stock-menos-100")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<MedicamentosDto>>> MedicamentosPrecioMas50StockMenos100()
@@ -189,8 +174,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpPost]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Medicamento>> Post(MedicamentoDto medicamentoDto)
     {
@@ -205,8 +189,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpPut]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -222,8 +205,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
     public async Task<ActionResult> Delete (int id)

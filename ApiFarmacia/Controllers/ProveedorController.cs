@@ -20,8 +20,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<ProveedorDto>>> Get()
@@ -31,8 +30,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("{Id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
 
@@ -43,8 +41,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("GetMedisXProve")] 
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<ProveedoresDto>>> GetMedisXProve()
@@ -54,8 +51,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("suministro-mas-medicamentos-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<ProveedorDto>> ProveedorMasSuministro2023()
@@ -69,8 +65,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("suministraron-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<int>> TotalProveedoresSuministro2023()
@@ -80,8 +75,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("medicamentos-menos-50-stock")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<ProveedoresDto>>> ProveedoresMenos50stockMedicamentos()
@@ -91,8 +85,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("suministro-almenos-5-medicamentos-diferentes-2023")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<ProveedoresDto>>> ProveedoresSuministro5MedicamentosDiferentes()
@@ -102,8 +95,7 @@ public class ProveedorController : BaseApiController
     }
     
     [HttpGet("proveedorMedica")] 
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>> GetMediProveA()
@@ -113,8 +105,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("GetProveeNoVenMedis")] 
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<IEnumerable<ProveedorDto>>> GetProveNoVentas()
@@ -124,8 +115,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpGet("GetGananTotalProvee")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<dynamic>>> GetGananTotalProvee()
     {
@@ -134,8 +124,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpPost]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<ActionResult<Proveedor>> Post(ProveedorDto proveedorDto)
@@ -151,8 +140,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpPut]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status200OK)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -168,8 +156,7 @@ public class ProveedorController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    /* [Authorize] */
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+   [Authorize]    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
     public async Task<ActionResult> Delete (int id)
